@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import supabase from './supabaseClient'; // Ensure this path matches your project structure
 
 const Footer: React.FC = () => {
@@ -47,6 +48,14 @@ const Footer: React.FC = () => {
     }, 4000); // 4 seconds
   };
 
+  const handleScrollToBottom = () => {
+    // This will scroll to the bottom of the About page after it loads
+    const bottomElement = document.getElementById('bottom-of-about');
+    if (bottomElement) {
+      bottomElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="py-5 bg-dark text-white">
       <div className="container">
@@ -55,13 +64,13 @@ const Footer: React.FC = () => {
             <h5>University Resources</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-white">CT Papers</a>
+                <Link to="/ct-home" className="nav-link p-0 text-white">CT Papers</Link>
               </li>
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-white">Semester Papers</a>
+                <Link to="/ct-home" className="nav-link p-0 text-white">Semester Papers</Link>
               </li>
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-white">Study Materials</a>
+                <Link to="/ct-home" className="nav-link p-0 text-white">Study Materials</Link>
               </li>
             </ul>
           </div>
@@ -70,10 +79,23 @@ const Footer: React.FC = () => {
             <h5>Support & Help</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-white">Contact Support</a>
+                {/* Link to About page and scroll to the bottom */}
+                <Link 
+                  to="/about" 
+                  className="nav-link p-0 text-white" 
+                  onClick={handleScrollToBottom}
+                >
+                  FAQs
+                </Link>
               </li>
               <li className="nav-item mb-2">
-                <a href="#" className="nav-link p-0 text-white">FAQs</a>
+                {/* Contact email link */}
+                <a 
+                  href="mailto:archiveatsrm@gmail.com" 
+                  className="nav-link p-0 text-white"
+                >
+                  Contact Support
+                </a>
               </li>
             </ul>
           </div>
@@ -97,7 +119,7 @@ const Footer: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <button className="btn btn-primary" type="submit">Connect</button>
+                <button className="btn btn-outline-light" type="submit">Connect</button>
               </div>
             </form>
             {submissionStatus && (

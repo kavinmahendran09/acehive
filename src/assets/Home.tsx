@@ -1,16 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './Navbar';
-import Footer from './Footer'; 
+import Footer from './Footer';
 import { FaBook, FaClipboard, FaFolderOpen } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import supabase from './supabaseClient'; // Import Supabase client
 
 const Home: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [comments, setComments] = useState('');
+  const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
+  const [alertType, setAlertType] = useState<'success' | 'danger' | null>(null);
 
   const handleGetStarted = () => {
     const resourceSection = document.getElementById('resource-section');
     if (resourceSection) {
       resourceSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleFeedbackSubmission = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !comments) {
+      setAlertType('danger');
+      setSubmissionStatus('Please fill in both the email and comments.');
+      dismissAlertAfterTimeout();
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('feedback')
+        .insert([{ email, comments }]);
+
+      if (error) {
+        console.error('Error saving feedback:', error);
+        setAlertType('danger');
+        setSubmissionStatus('Failed to submit feedback. Please try again later.');
+        dismissAlertAfterTimeout();
+        return;
+      }
+
+      console.log('Feedback submitted successfully:', data);
+      setAlertType('success');
+      setSubmissionStatus('Feedback submitted successfully! Thank you for your input.');
+      setEmail(''); // Clear the input fields
+      setComments('');
+      dismissAlertAfterTimeout();
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      setAlertType('danger');
+      setSubmissionStatus('An unexpected error occurred. Please try again.');
+      dismissAlertAfterTimeout();
+    }
+  };
+
+  const dismissAlertAfterTimeout = () => {
+    setTimeout(() => {
+      setSubmissionStatus(null);
+      setAlertType(null);
+    }, 4000); // 4 seconds
   };
 
   return (
@@ -144,13 +193,15 @@ const Home: React.FC = () => {
             <p className="col-lg-10 fs-4">Please provide your feedback and suggestions to help us improve. Your input is valuable for enhancing your experience.</p>
           </div>
           <div className="col-md-10 mx-auto col-lg-5">
-            <form className="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <form className="p-4 p-md-5 border rounded-3 bg-body-tertiary" onSubmit={handleFeedbackSubmission}>
               <div className="form-floating mb-3">
                 <input
                   type="email"
                   className="form-control"
                   id="floatingInput"
                   placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 <label htmlFor="floatingInput">Email address</label>
@@ -160,13 +211,20 @@ const Home: React.FC = () => {
                   className="form-control"
                   id="floatingComments"
                   placeholder="Enter your feedback"
+                  value={comments}
+                  onChange={(e) => setComments(e.target.value)}
                   required
                 ></textarea>
                 <label htmlFor="floatingComments">Your Comments</label>
               </div>
-              <button className="w-100 btn btn-lg btn-primary" type="submit">Submit Feedback</button>
+              <button className="w-100 btn btn-lg btn-dark" type="submit">Submit Feedback</button>
               <hr className="my-4" />
               <small className="text-body-secondary">By submitting feedback, you agree to our terms of use.</small>
+              {submissionStatus && (
+                <div className={`alert alert-${alertType} mt-3`} role="alert">
+                  {submissionStatus}
+                </div>
+              )}
             </form>
           </div>
         </div>
