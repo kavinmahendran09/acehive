@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
-import Footer from './Footer'; 
+import Footer from './Footer';
 
 const ResourceView: React.FC = () => {
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ const ResourceView: React.FC = () => {
   const handleBack = () => {
     navigate('/ct-home', { state: searchState });
   };
-  
 
   return (
     <div>
@@ -39,7 +38,7 @@ const ResourceView: React.FC = () => {
       <div className="container my-4">
         <h3>Content</h3>
 
-        {/* Content Box with Images */}
+        {/* Content Box with Images and PDF */}
         <div
           className="w-100 mb-4 p-4"
           style={{
@@ -55,11 +54,23 @@ const ResourceView: React.FC = () => {
             ))}
           </ul>
 
-          <h4>Images:</h4>
+          <h4>Resource:</h4>
           <div className="row">
             {resource.file_urls.map((url: string, index: number) => (
               <div key={index} className="col-md-4 mb-3">
-                <img src={url} alt={`Image ${index + 1}`} className="img-fluid" style={{ borderRadius: '12px' }} />
+                {/* Check if it's a PDF and display accordingly */}
+                {url.endsWith('.pdf') ? (
+                  <div style={{ height: '500px', overflowY: 'scroll', width: '82.5vw' }}>
+                    <iframe
+                      src={url}
+                      width="100%"
+                      height="100%"
+                      title={`PDF ${index + 1}`}
+                    />
+                  </div>
+                ) : (
+                  <img src={url} alt={`Image ${index + 1}`} className="img-fluid" style={{ borderRadius: '12px' }} />
+                )}
               </div>
             ))}
           </div>

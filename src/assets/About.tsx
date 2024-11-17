@@ -66,7 +66,7 @@ const About: React.FC = () => {
                 <img src="https://via.placeholder.com/150" className="card-img-top" alt="Team Member" />
                 <div className="card-body">
                   <h5 className="card-title">M Kavin Bharathi</h5>
-                  <p className="card-text">Project Lead & Developer</p>
+                  <p className="card-text">Founder & Developer</p>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@ const About: React.FC = () => {
                 <img src="https://via.placeholder.com/150" className="card-img-top" alt="Team Member" />
                 <div className="card-body">
                   <h5 className="card-title">Tharun Haribabu</h5>
-                  <p className="card-text">Content Manager</p>
+                  <p className="card-text">Founder & Content Manager</p>
                 </div>
               </div>
             </div>
