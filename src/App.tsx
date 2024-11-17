@@ -7,6 +7,10 @@ import AdminLogin from './assets/AdminLogin';
 import AdminDashboard from './assets/AdminDashboard';
 import About from './assets/About';
 import ScrollToTop from './assets/ScrollToTop'; // Import ScrollToTop
+import { pdfjs } from 'react-pdf'; // Import pdfjs from react-pdf
+
+// Set the worker source for PDF rendering
+pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
