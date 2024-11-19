@@ -59,11 +59,17 @@ const CTHome: React.FC = () => {
   const handleViewPaper = (resource: any) => {
     navigate('/resource-view', { state: { ...resource, resourceType, searchState: { year, degree, specialisation, subject, elective, results: searchResults, resourceType } } });
   };
-  
 
   return (
     <div>
       <Navbar />
+
+      {/* Banner Section */}
+      <div className="bg-dark text-white text-center py-3 mb-4 py-5">
+        <h1 className="m-0">{resourceType}</h1>
+        <p className="m-0">Explore curated {resourceType} resources for your needs</p>
+      </div>
+
       <div className="container my-5 px-2">
         <div className="row">
           <Filters
@@ -123,7 +129,7 @@ const CTHome: React.FC = () => {
                         </div>
 
                         <button onClick={() => handleViewPaper(resource)} className="btn btn-dark mt-2 w-100">
-                          View Paper
+                          View Resource
                         </button>
                       </div>
                     </div>
