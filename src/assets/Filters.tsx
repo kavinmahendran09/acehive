@@ -27,37 +27,38 @@ const Filters: React.FC<FiltersProps> = ({
   setSubject,
   setElective,
   handleSearch,
-  warning
+  warning,
 }) => {
   // Define options for specialisation and subjects/electives based on conditions
-  const specialisationOptions = year === '3rd Year' && degree === 'Computer Science'
-    ? [
-        "Internet of Things",
-        "Data Science",
-        "Information Technology",
-        "Artificial Intelligence",
-        "Cloud Computing",
-        "Cyber Security",
-        "Computer Networking",
-        "Gaming Technology",
-        "Artificial Intelligence and Machine Learning",
-        "Business Systems",
-        "Big Data Analytics",
-        "Block Chain Technology",
-        "Software Engineering",
-        "Computer Science and Engineering",
-      ]
-    : ["Course 1", "Course 2", "Course 3"];
+  const specialisationOptions =
+    year === '3rd Year' && degree === 'Computer Science'
+      ? [
+          'Internet of Things',
+          'Data Science',
+          'Information Technology',
+          'Artificial Intelligence',
+          'Cloud Computing',
+          'Cyber Security',
+          'Computer Networking',
+          'Gaming Technology',
+          'Artificial Intelligence and Machine Learning',
+          'Business Systems',
+          'Big Data Analytics',
+          'Block Chain Technology',
+          'Software Engineering',
+          'Computer Science and Engineering',
+        ]
+      : ['Course 1', 'Course 2', 'Course 3'];
 
   const subjectOptions =
-    specialisation === "Artificial Intelligence and Machine Learning"
-      ? ["Computer Networks", "Discrete Mathematics", "Machine Learning", "Formal Language and Automata"]
-      : ["Subject 1", "Subject 2", "Subject 3"];
+    specialisation === 'Artificial Intelligence and Machine Learning'
+      ? ['Computer Networks', 'Discrete Mathematics', 'Machine Learning', 'Formal Language and Automata']
+      : ['Subject 1', 'Subject 2', 'Subject 3'];
 
   const electiveOptions =
-    specialisation === "Artificial Intelligence and Machine Learning"
-      ? ["Disaster Mitigation and Management", "Gen AI", "Cloud Computing"]
-      : ["Elective 1", "Elective 2", "Elective 3"];
+    specialisation === 'Artificial Intelligence and Machine Learning'
+      ? ['Disaster Mitigation and Management', 'Gen AI', 'Cloud Computing']
+      : ['Elective 1', 'Elective 2', 'Elective 3'];
 
   const handleYearChange = (y: string) => {
     setYear(y);
@@ -83,7 +84,7 @@ const Filters: React.FC<FiltersProps> = ({
             <button
               key={y}
               type="button"
-              className={`list-group-item list-group-item-action ${year === y ? 'active' : ''}`}
+              className={`list-group-item list-group-item-action ${year === y ? 'bg-dark text-white' : ''}`}
               onClick={() => handleYearChange(y)}
             >
               {y}
@@ -98,7 +99,7 @@ const Filters: React.FC<FiltersProps> = ({
             <button
               key={d}
               type="button"
-              className={`list-group-item list-group-item-action ${degree === d ? 'active' : ''}`}
+              className={`list-group-item list-group-item-action ${degree === d ? 'bg-dark text-white' : ''}`}
               onClick={() => handleDegreeChange(d)}
             >
               {d}
@@ -143,6 +144,7 @@ const Filters: React.FC<FiltersProps> = ({
             </option>
           ))}
         </select>
+        <small className="text-muted">You can select either a Subject or an Elective, but not both.</small>
       </div>
       <div className="mb-3">
         <h5>Elective</h5>
