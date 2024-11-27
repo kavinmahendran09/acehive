@@ -100,6 +100,22 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
+          <div className="col-6 col-md-2 mb-3">
+            <h5>Privacy & Terms</h5>
+            <ul className="nav flex-column">
+              <li className="nav-item mb-2">
+                {/* Link to About page and scroll to the bottom */}
+                <Link 
+                  to="/about" 
+                  className="nav-link p-0 text-white" 
+                  onClick={handleScrollToBottom}
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           <div className="col-md-5 offset-md-1 mb-3">
             <form
               onSubmit={(e) => {
@@ -108,7 +124,7 @@ const Footer: React.FC = () => {
               }}
             >
               <h5>Want to Collaborate or Promote with Us?</h5>
-              <p>If you're interested in partnerships, promotions, or collaborations, let's connect!</p>
+              <p>If you're interested in promotions, or collaborations, let's connect!</p>
               <div className="d-flex flex-column flex-sm-row w-100 gap-2">
                 <label htmlFor="newsletter1" className="visually-hidden">Email address</label>
                 <input
