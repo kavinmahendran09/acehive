@@ -133,7 +133,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## **💬 Contact**
 
-📧 Email: kavin.mahendran09@example.com  
+📧 Email: kavinbharathi.mahendran@gmail.com  
 🌐 LinkedIn: [Kavin Mahendran](https://www.linkedin.com/in/kavin-bharathi-081577252/)  
 GitHub: [kavinmahendran09](https://github.com/kavinmahendran09)
 

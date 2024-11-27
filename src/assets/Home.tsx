@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { FaBook, FaClipboard, FaFolderOpen } from 'react-icons/fa';
+import { FaBook, FaClipboard, FaFolderOpen, FaTable } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import supabase from './supabaseClient'; // Import Supabase client
 
@@ -84,153 +84,209 @@ const Home: React.FC = () => {
 
       {/* Spacer after Banner */}
       <div className="my-4"></div>
-
-      {/* Resource Count Section */}
-      <section id="resource-section" className="bg-light text-center py-5">
-        <div className="container px-3 px-md-5">
-          <h2 className="display-6">
-            Over <span className="text-primary" style={{ fontSize: '3rem', fontWeight: 'bold' }}>400+</span> resource materials available for students
-          </h2>
-        </div>
-      </section>
-
+      
       {/* Filter Banner Section */}
       <section className="container my-5">
-        <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-sm">
           <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
-            <h1 className="display-4 fw-bold lh-1">Find Exactly What You Need</h1>
-            <p className="lead">
-              Our advanced filtering system lets you easily search through hundreds of resources by subject, year, and type. 
-              Whether you’re looking for Cycle Test papers, semester exams, or study materials, you can locate the exact resources you need with just a few clicks.
-            </p>
-            <p className="text-muted">
-              Save time and streamline your study preparation with our intuitive filter options, designed specifically for SRM students.
-            </p>
+            <h1 className="display-4 fw-bold lh-1">Find. Prepare. Ace</h1>
+            <ul className="text-muted" style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+              <li>Save time and effort with our advanced search filters tailored for SRM students.</li>
+              <li>Quickly locate study materials, previous exam papers, and specific academic resources based on your preferences.</li>
+              <li>Filter resources by year, degree, specialization, subject, and elective for precise results.</li>
+            </ul>
           </div>
-          <div className="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-            <img
-              src="https://jzgisslizhrhnovplcuz.supabase.co/storage/v1/object/public/Web%20Sources/Images/Filter3.png"
-              alt="Filter section preview"
-              className="rounded-lg-3 img-fluid"
-              style={{ width: '100%', height: 'auto', maxHeight: '400px', objectFit: 'cover' }}
-            />
+          <div className="col-lg-4 offset-lg-1 p-0">
+            <div className="p-4 rounded-3 text-center">
+              {/* Image Instead of Filters */}
+              <img 
+                src="https://jzgisslizhrhnovplcuz.supabase.co/storage/v1/object/public/Web%20Sources/Images/dark_selection_filter.png" 
+                alt="Filter System" 
+                className="img-fluid" 
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Resource View Banner Section */}
-      <section className="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 className="display-4 fw-bold">Browse Resources</h1>
-        <div className="col-lg-7 mx-auto">
-          <p className="lead mb-4">
-            Dive into a comprehensive collection of study materials, cycle test papers, and semester papers, all categorized by subject and year. Our intuitive interface helps you quickly find the resources you need, covering a wide range of topics to support your academic journey.
+
+
+
+      {/* Features Section */}
+      <section className="container px-4 py-5">
+      <h2 className="pb-2 border-bottom">Explore the Features of Acehive</h2>
+
+      <div className="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+        <div className="col d-flex flex-column align-items-start gap-2">
+          <h2 className="fw-bold text-body-emphasis">Streamline Your Study Preparation with Acehive</h2>
+          <p className="text-body-secondary">
+            Discover the powerful features of Acehive that help SRM students efficiently access and organize university resources, including Cycle Test papers, Semester papers, and study materials.
           </p>
-          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-            <Link to="/ct-home" className="btn btn-dark btn-lg px-4 me-sm-3">Get Started</Link>
-            <Link to="/about" className="btn btn-outline-dark btn-lg">Learn More</Link>
-          </div>
+          <Link to="/ct-home" className="btn btn-dark">Get Started</Link>
         </div>
-        <div className="overflow-hidden" style={{ maxHeight: '30vh' }}>
-          <div className="container px-5">
-            <img
-              src="https://jzgisslizhrhnovplcuz.supabase.co/storage/v1/object/public/Web%20Sources/Images/resource%20pic.png"
-              alt="Example screenshot"
-              className="img-fluid border rounded-3 shadow-lg mb-4"
-              width="700"
-              height="500"
-              loading="lazy"
-              style={{ maxHeight: '300px', objectFit: 'cover' }}
-            />
-          </div>
-        </div>
-      </section>
 
-      {/* Spacer after Hero Section */}
-      <div className="my-5"></div>
-
-      {/* Resources Cards */}
-      <div className="container my-5 px-3 px-md-5">
-        <h2 className="text-center mb-4">Explore Our Resources</h2>
-        <div className="row mt-4">
-          <div className="col-md-4 mb-4">
-            <div className="card text-center h-100">
-              <div className="card-body">
-                <FaClipboard size={80} className="text-dark mb-3" />
-                <h5 className="card-title">CT Papers</h5>
-                <p className="card-text">Find all your Cycle Test papers sorted by subject and year.</p>
-                <Link to="/ct-home" className="btn btn-dark">View CT Papers</Link>
+        <div className="col">
+          <div className="row row-cols-1 row-cols-sm-2 g-4">
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaClipboard size={24} />
               </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Organized Resource Library</h4>
+              <p className="text-body-secondary">
+                Access a well-organized library of resources sorted by subject, year, and resource type, helping you quickly find the materials you need.
+              </p>
+            </div>
+
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaFolderOpen size={24} />
+              </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Smart Filtering</h4>
+              <p className="text-body-secondary">
+                Quickly filter through resources based on your requirements, such as subject, type of paper, and year, making your study preparation more efficient.
+              </p>
+            </div>
+
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaBook size={24} />
+              </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Fast Access</h4>
+              <p className="text-body-secondary">
+                With fast access to thousands of resources, Acehive minimizes wait time and lets you focus on what matters: studying and preparing for exams.
+              </p>
+            </div>
+
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaTable size={24} />
+              </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Detailed Insights</h4>
+              <p className="text-body-secondary">
+                Get detailed insights into resource usage and performance, helping you track your progress and plan your study sessions more effectively.
+              </p>
             </div>
           </div>
-          <div className="col-md-4 mb-4">
-            <div className="card text-center h-100">
-              <div className="card-body">
-                <FaBook size={80} className="text-dark mb-3" />
-                <h5 className="card-title">Sem Papers</h5>
-                <p className="card-text">Access Semester papers for comprehensive exam preparation.</p>
-                <Link to="/ct-home" className="btn btn-dark">View Sem Papers</Link>
+        </div>
+      </div>
+    </section>
+
+
+    {/* Resources Cards Section */}
+    <div className="container my-5 px-3 px-md-5" style={{ padding: '30px'}} id="resource-section">
+      <h2 className="text-center mb-5" style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold', fontSize: '2.5rem', color: '#333' }}>
+        Explore Our Resources
+      </h2>
+      <div className="row mt-4">
+        {/* CT Papers Card */}
+        <div className="col-md-4 mb-4">
+          <div className="card text-center h-100 rounded-3" style={{ position: 'relative', border: '2px solid black', backgroundColor: 'white' }}>
+            <div className="card-body d-flex flex-column align-items-center justify-content-center">
+              <div className="icon-container mb-3" style={{
+                width: '120px', height: '120px', borderRadius: '50%', background: '#343a40', display: 'flex', justifyContent: 'center', alignItems: 'center'
+              }}>
+                <FaClipboard size={70} className="text-white" />
               </div>
+              <h5 className="card-title mt-4" style={{ fontSize: '1.5rem', color: '#444', fontWeight: 'bold' }}>CT Papers</h5>
+              <p className="card-text mb-4" style={{ color: '#777' }}>Find all your Cycle Test papers sorted by subject and year.</p>
+              <Link to="/ct-home" className="btn btn-dark">Explore CT Papers</Link>
             </div>
           </div>
-          <div className="col-md-4 mb-4">
-            <div className="card text-center h-100">
-              <div className="card-body">
-                <FaFolderOpen size={80} className="text-dark mb-3" />
-                <h5 className="card-title">Study Materials</h5>
-                <p className="card-text">Get additional resources and materials to help you succeed in exams.</p>
-                <Link to="/ct-home" className="btn btn-dark">View Materials</Link>
+        </div>
+        {/* Sem Papers Card */}
+        <div className="col-md-4 mb-4">
+          <div className="card text-center h-100 rounded-3" style={{ position: 'relative', border: '2px solid black', backgroundColor: 'white' }}>
+            <div className="card-body d-flex flex-column align-items-center justify-content-center">
+              <div className="icon-container mb-3" style={{
+                width: '120px', height: '120px', borderRadius: '50%', background: '#343a40', display: 'flex', justifyContent: 'center', alignItems: 'center'
+              }}>
+                <FaFolderOpen size={70} className="text-white" />
               </div>
+              <h5 className="card-title mt-4" style={{ fontSize: '1.5rem', color: '#444', fontWeight: 'bold' }}>Sem Papers</h5>
+              <p className="card-text mb-4" style={{ color: '#777' }}>Access all Semester papers and exams from previous years.</p>
+              <Link to="/sem-home" className="btn btn-dark">Explore Sem Papers</Link>
+            </div>
+          </div>
+        </div>
+        {/* Study Materials Card */}
+        <div className="col-md-4 mb-4">
+          <div className="card text-center h-100 rounded-3" style={{ position: 'relative', border: '2px solid black', backgroundColor: 'white' }}>
+            <div className="card-body d-flex flex-column align-items-center justify-content-center">
+              <div className="icon-container mb-3" style={{
+                width: '120px', height: '120px', borderRadius: '50%', background: '#343a40', display: 'flex', justifyContent: 'center', alignItems: 'center'
+              }}>
+                <FaBook size={70} className="text-white" />
+              </div>
+              <h5 className="card-title mt-4" style={{ fontSize: '1.5rem', color: '#444', fontWeight: 'bold' }}>Study Materials</h5>
+              <p className="card-text mb-4" style={{ color: '#777' }}>Browse all study materials and resources for exam preparation.</p>
+              <Link to="/study-home" className="btn btn-dark">Explore Study Materials</Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Feedback Form Section */}
-      <section className="container col-xl-10 col-xxl-8 px-4 py-5">
-        <div className="row align-items-center g-lg-5 py-5">
-          <div className="col-lg-7 text-center text-lg-start">
-            <h1 className="display-4 fw-bold lh-1 text-body-emphasis mb-3">We Value Your Feedback</h1>
-            <p className="col-lg-10 fs-4">Please provide your feedback and suggestions to help us improve. Your input is valuable for enhancing your experience.</p>
-          </div>
-          <div className="col-md-10 mx-auto col-lg-5">
-            <form className="p-4 p-md-5 border rounded-3 bg-body-tertiary" onSubmit={handleFeedbackSubmission}>
-              <div className="form-floating mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="floatingInput"
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <label htmlFor="floatingInput">Email address</label>
-              </div>
-              <div className="form-floating mb-3">
-                <textarea
-                  className="form-control"
-                  id="floatingComments"
-                  placeholder="Enter your feedback"
-                  value={comments}
-                  onChange={(e) => setComments(e.target.value)}
-                  required
-                ></textarea>
-                <label htmlFor="floatingComments">Your Comments</label>
-              </div>
-              <button className="w-100 btn btn-lg btn-dark" type="submit">Submit Feedback</button>
-              <hr className="my-4" />
-              <small className="text-body-secondary">By submitting feedback, you agree to our terms of use.</small>
-              {submissionStatus && (
-                <div className={`alert alert-${alertType} mt-3`} role="alert">
-                  {submissionStatus}
-                </div>
-              )}
-            </form>
-          </div>
+      {/* Stay Tuned Section Inside a Dotted Border Container */}
+      <div className="container mt-5 p-4" style={{
+        border: '2px dotted #444', borderRadius: '10px', boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)', backgroundColor: 'white'
+      }}>
+        <div className="text-center">
+          <h3 className="mb-3" style={{ color: '#444', fontWeight: 'bold' }}>
+            More to Come... Stay Tuned!
+          </h3>
+          <p className="lead text-muted" style={{ fontSize: '1.2rem', fontStyle: 'italic' }}>
+            We're working on adding even more resources to make your study journey even better. Check back soon for exciting updates!
+          </p>
         </div>
-      </section>
+      </div>
+    </div>
 
-      {/* Footer */}
+
+    {/* Feedback Form Section */}
+    <section className="container px-3 px-md-5 py-5">
+      <div className="row align-items-center g-lg-5 py-5">
+        <div className="col-lg-7 text-center text-lg-start">
+          <h1 className="display-4 fw-bold lh-1 text-body-emphasis mb-3">We Value Your Feedback</h1>
+          <p className="col-lg-10 fs-4">Please provide your feedback and suggestions to help us improve. Your input is valuable for enhancing your experience.</p>
+        </div>
+        <div className="col-md-10 mx-auto col-lg-5">
+          <form className="p-4 p-md-5 border rounded-3 bg-body-tertiary" onSubmit={handleFeedbackSubmission}>
+            <div className="form-floating mb-3">
+              <input
+                type="email"
+                className="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label htmlFor="floatingInput">Email address</label>
+            </div>
+            <div className="form-floating mb-3">
+              <textarea
+                className="form-control"
+                id="floatingComments"
+                placeholder="Enter your feedback"
+                value={comments}
+                onChange={(e) => setComments(e.target.value)}
+                required
+              ></textarea>
+              <label htmlFor="floatingComments">Your Comments</label>
+            </div>
+            <button className="w-100 btn btn-lg btn-dark" type="submit">Submit Feedback</button>
+            <hr className="my-4" />
+            <small className="text-body-secondary">Your feedback is valuable to us! Thank you for helping us improve.</small>
+            {submissionStatus && (
+              <div className={`alert alert-${alertType} mt-3`} role="alert">
+                {submissionStatus}
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    </section>
+
+
       <Footer />
     </div>
   );
