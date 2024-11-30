@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer'; 
-import { FaUsers, FaBullseye, FaRegLightbulb } from 'react-icons/fa';
+import { FaUsers, FaBullseye, FaRegLightbulb, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const About: React.FC = () => {
   return (
@@ -61,21 +61,47 @@ const About: React.FC = () => {
         <div className="container">
           <h2 className="text-center mb-5">Meet Our Team</h2>
           <div className="row">
-            <div className="col-md-6 mb-4">
-              <div className="card text-center">
-                <img src="https://via.placeholder.com/150" className="card-img-top" alt="Team Member" />
-                <div className="card-body">
-                  <h5 className="card-title">M Kavin Bharathi</h5>
-                  <p className="card-text">Founder & Developer</p>
+            <div className="col-md-6 mb-4 text-center">
+              <div className="d-flex flex-column align-items-center">
+                <img 
+                  src="https://via.placeholder.com/250" 
+                  alt="M Kavin Bharathi" 
+                  className="rounded-circle mb-3" 
+                  style={{ width: '250px', height: '250px', objectFit: 'cover' }} 
+                />
+                <h5 className="card-title">M Kavin Bharathi</h5>
+                <p className="card-text">Founder & Project Developer</p>
+
+                {/* Social Links */}
+                <div>
+                  <a href="https://www.linkedin.com/in/kavin-bharathi-081577252/" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
+                    <FaLinkedin size={30} />
+                  </a>
+                  <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
+                    <FaGithub size={30} />
+                  </a>
                 </div>
               </div>
             </div>
-            <div className="col-md-6 mb-4">
-              <div className="card text-center">
-                <img src="https://via.placeholder.com/150" className="card-img-top" alt="Team Member" />
-                <div className="card-body">
-                  <h5 className="card-title">Tharun Haribabu</h5>
-                  <p className="card-text">Founder & Content Manager</p>
+            <div className="col-md-6 mb-4 text-center">
+              <div className="d-flex flex-column align-items-center">
+                <img 
+                  src="https://via.placeholder.com/250" 
+                  alt="Tharun Haribabu" 
+                  className="rounded-circle mb-3" 
+                  style={{ width: '250px', height: '250px', objectFit: 'cover' }} 
+                />
+                <h5 className="card-title">Tharun Haribabu</h5>
+                <p className="card-text">Founder & Content Manager</p>
+
+                {/* Social Links */}
+                <div>
+                  <a href="https://www.linkedin.com/in/tharun-haribabu/" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
+                    <FaLinkedin size={30} />
+                  </a>
+                  <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
+                    <FaGithub size={30} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -118,7 +144,6 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
-
 
       {/* FAQ Section */}
       <section className="py-5">

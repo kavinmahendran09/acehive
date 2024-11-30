@@ -71,7 +71,7 @@ const Home: React.FC = () => {
         <div className="container px-3 px-md-5">
           <h1 className="display-4 font-weight-bold">Welcome to <strong>Acehive</strong></h1>
           <p className="lead" style={{ color: '#A9A9A9' }}>
-            Your one-stop destination for university question papers and subject portions!
+            Your one-stop destination for Resources!
           </p>
           <div className="mt-4">
             <button className="btn btn-light btn-lg me-3" onClick={handleGetStarted}>
@@ -81,33 +81,53 @@ const Home: React.FC = () => {
           </div>
         </div>
       </header>
-
-      {/* Spacer after Banner */}
-      <div className="my-4"></div>
       
+
       {/* Filter Banner Section */}
-      <section className="container my-5">
-        <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-sm">
-          <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
-            <h1 className="display-4 fw-bold lh-1">Find. Prepare. Ace</h1>
-            <ul className="text-muted" style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-              <li>Save time and effort with our advanced search filters tailored for SRM students.</li>
-              <li>Quickly locate study materials, previous exam papers, and specific academic resources based on your preferences.</li>
-              <li>Filter resources by year, degree, specialization, subject, and elective for precise results.</li>
+      <section className="container my-5 px-3 px-md-5" style={{ padding: '30px' }}>
+        <div className="d-flex flex-column flex-lg-row align-items-center">
+          {/* Text Content */}
+          <div 
+            className="text-content d-flex flex-column justify-content-between"
+            style={{ flex: 1 }}
+          >
+            <h1 className="display-5 fw-bold mb-3" style={{ marginTop: 'auto' }}>
+              Find Resources Instantly
+            </h1>
+            <p className="lead">
+              Simplify your academic journey with quick access to curated resources 
+              designed for SRM students. 
+            </p>
+            <ul className="list-unstyled mt-4">
+              <li className="mb-2">
+                <i className="text-primary me-2" style={{ fontSize: '1.2rem' }}>✔</i>
+                Filter by year, subject, and specialization.
+              </li>
+              <li className="mb-2">
+                <i className="text-primary me-2" style={{ fontSize: '1.2rem' }}>✔</i>
+                Quickly locate study materials and papers.
+              </li>
+              <li className="mb-2">
+                <i className="text-primary me-2" style={{ fontSize: '1.2rem' }}>✔</i>
+                Save time with precise search results.
+              </li>
             </ul>
           </div>
-          <div className="col-lg-4 offset-lg-1 p-0">
-            <div className="p-4 rounded-3 text-center">
-              {/* Image Instead of Filters */}
-              <img 
-                src="https://jzgisslizhrhnovplcuz.supabase.co/storage/v1/object/public/Web%20Sources/Images/dark_selection_filter.png" 
-                alt="Filter System" 
-                className="img-fluid" 
-              />
-            </div>
+          {/* Image Content */}
+          <div 
+            className="image-content ms-lg-4 mt-4 mt-lg-0"
+            style={{ maxWidth: '300px', flexShrink: 0 }}
+          >
+            <img 
+              src="https://jzgisslizhrhnovplcuz.supabase.co/storage/v1/object/public/Web%20Sources/Images/dark_selection_filter.png" 
+              alt="Filter System" 
+              className="img-fluid w-100" 
+            />
           </div>
         </div>
       </section>
+
+
 
 
 
