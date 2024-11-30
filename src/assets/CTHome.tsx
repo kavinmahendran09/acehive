@@ -45,7 +45,11 @@ const CTHome: React.FC = () => {
 
       console.log("Fetching resources with filters:", { year, degree, specialisation, subject, elective }, resourceType);
 
-      const results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
+      let results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
+
+      // Sort the results alphabetically by title
+      results = results.sort((a: any, b: any) => a.title.localeCompare(b.title));
+
       setSearchResults(results);
       setIsLoading(false);
 
