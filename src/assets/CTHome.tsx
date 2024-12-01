@@ -110,7 +110,7 @@ const CTHome: React.FC = () => {
               <div className="row mt-4">
                 {searchResults.map((resource, index) => (
                   <div className="col-md-4 mb-4" key={index}>
-                    <div className="card h-100">
+                    <div className="card h-100" style={{borderColor:"gray"}}>{/* Border for card */}
                       <img 
                         src={resource.file_urls[0]} 
                         className="card-img-top" 
@@ -119,7 +119,7 @@ const CTHome: React.FC = () => {
                       />
                       <div className="card-body">
                         <h5 className="card-title">{resource.title}</h5>
-                        <p className="card-text">{resource.description.slice(0, 100)}...</p>
+                        <p className="card-text" style={{color:"gray"}}>{resource.description.slice(0, 100)}...</p>
 
                         <div className="tags mt-2">
                           {resource.tags && resource.tags.length > 0 && resource.tags.map((tag: string, tagIndex: number) => (
