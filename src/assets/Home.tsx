@@ -224,7 +224,7 @@ const Home: React.FC = () => {
               </div>
               <h5 className="card-title mt-4" style={{ fontSize: '1.5rem', color: '#444', fontWeight: 'bold' }}>Sem Papers</h5>
               <p className="card-text mb-4" style={{ color: '#777' }}>Access all Semester papers and exams from previous years.</p>
-              <Link to="/sem-home" className="btn btn-dark">Explore Sem Papers</Link>
+              <Link to="/ct-home" className="btn btn-dark" state={{ resourceType: "Sem Paper" }}>Explore Sem Papers</Link>
             </div>
           </div>
         </div>
@@ -239,7 +239,7 @@ const Home: React.FC = () => {
               </div>
               <h5 className="card-title mt-4" style={{ fontSize: '1.5rem', color: '#444', fontWeight: 'bold' }}>Study Materials</h5>
               <p className="card-text mb-4" style={{ color: '#777' }}>Browse all study materials and resources for exam preparation.</p>
-              <Link to="/study-home" className="btn btn-dark">Explore Study Materials</Link>
+              <Link to="/ct-home" className="btn btn-dark" state={{ resourceType: "Study Material" }}>Explore Study Materials</Link>
             </div>
           </div>
         </div>
