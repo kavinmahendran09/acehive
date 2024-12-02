@@ -42,19 +42,29 @@ const CTHome: React.FC = () => {
     if (year && degree && specialisation && (subject || elective) && !(subject && elective)) {
       setWarning(null);
       setIsLoading(true);
-
-      console.log("Fetching resources with filters:", { year, degree, specialisation, subject, elective }, resourceType);
-
-      let results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
-
-      // Sort the results alphabetically by title
-      results = results.sort((a: any, b: any) => a.title.localeCompare(b.title));
-
-      setSearchResults(results);
-      setIsLoading(false);
-
-      const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType };
-      navigate('/ct-home', { state: newSearchState });
+  
+      try {
+        let results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
+  
+        // Sort the results alphabetically by title
+        results = results.sort((a: any, b: any) => a.title.localeCompare(b.title));
+  
+        setSearchResults(results);
+        
+        // Add a message if no results found
+        if (results.length === 0) {
+          setWarning('No resources found matching your criteria.');
+        }
+  
+        const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType };
+        navigate('/ct-home', { state: newSearchState });
+      } catch (error) {
+        console.error('Search failed:', error);
+        setWarning('Unable to fetch resources. Please try again later.');
+        setSearchResults([]);
+      } finally {
+        setIsLoading(false);
+      }
     } else {
       setWarning('Please select all required filters before searching.');
     }
