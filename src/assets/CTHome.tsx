@@ -42,20 +42,28 @@ const CTHome: React.FC = () => {
     if (year && degree && specialisation && (subject || elective) && !(subject && elective)) {
       setWarning(null);
       setIsLoading(true);
-  
+
       try {
-        let results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
-  
+        let results;
+
+        if (year === '1st Year') {
+          // If 1st Year is selected, search only by subject or elective
+          results = await fetchResources({ year: '1st Year', subject, elective }, resourceType);
+        } else {
+          // If not 1st Year, use all selected filters
+          results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
+        }
+
         // Sort the results alphabetically by title
         results = results.sort((a: any, b: any) => a.title.localeCompare(b.title));
-  
+
         setSearchResults(results);
         
         // Add a message if no results found
         if (results.length === 0) {
           setWarning('No resources found matching your criteria.');
         }
-  
+
         const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType };
         navigate('/ct-home', { state: newSearchState });
       } catch (error) {
