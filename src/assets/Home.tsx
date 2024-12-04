@@ -266,7 +266,7 @@ const Home: React.FC = () => {
       <div className="row align-items-center g-lg-5 py-5">
         <div className="col-lg-7 text-center text-lg-start">
           <h1 className="display-4 fw-bold lh-1 text-body-emphasis mb-3">We Value Your Feedback</h1>
-          <p className="col-lg-10 fs-4">Please provide your feedback and suggestions to help us improve. Your input is valuable for enhancing your experience.</p>
+          <p className="col-lg-10 fs-4 text-muted">Please provide your feedback and suggestions to help us improve. Your input is valuable for enhancing your experience.</p>
         </div>
         <div className="col-md-10 mx-auto col-lg-5">
           <form className="p-4 p-md-5 border rounded-3 bg-body-tertiary" onSubmit={handleFeedbackSubmission}>

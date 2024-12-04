@@ -60,7 +60,7 @@ const ResourceView: React.FC = () => {
               <div key={index} className="col-md-4 mb-3">
                 {/* Check if it's a PDF and display accordingly */}
                 {url.endsWith('.pdf') ? (
-                  <div style={{ height: '500px', overflowY: 'scroll', width: '82.5vw' }}>
+                  <div style={{ height: '700px', overflowY: 'scroll', width: '82.5vw' }}>
                     <iframe
                       src={url}
                       width="100%"
