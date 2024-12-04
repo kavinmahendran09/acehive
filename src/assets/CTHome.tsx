@@ -82,6 +82,45 @@ const CTHome: React.FC = () => {
     navigate('/resource-view', { state: { ...resource, resourceType, searchState: { year, degree, specialisation, subject, elective, results: searchResults, resourceType } } });
   };
 
+  // Component for displaying the thumbnail
+  const Thumbnail: React.FC<{ resource: any }> = ({ resource }) => {
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isSafari) {
+      return (
+        <img
+          src={resource.file_urls[0]}
+          className="card-img-top"
+          alt={resource.title}
+          style={{ height: '150px', objectFit: 'cover' }}
+        />
+      );
+    }
+
+    const isPdf = resource.file_urls[0]?.toLowerCase().endsWith('.pdf');
+    const numberInTitle = resource.title.match(/\d+/)?.[0] || ''; // Extract number from title
+
+    if (isPdf) {
+      return (
+        <div className="d-flex justify-content-center align-items-center" style={{ height: '150px', backgroundColor: '#f4f4f4' }}>
+          <div className="d-flex flex-column align-items-center">
+            <i className="bi bi-file-earmark-pdf" style={{ fontSize: '3rem', color: '#e74c3c' }}></i>
+            <span className="mt-2" style={{ fontSize: '1.2rem' }}>{numberInTitle}</span>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <img
+        src={resource.file_urls[0]}
+        className="card-img-top"
+        alt={resource.title}
+        style={{ height: '150px', objectFit: 'cover' }}
+      />
+    );
+  };
+
   return (
     <div>
       <Navbar />
@@ -128,16 +167,13 @@ const CTHome: React.FC = () => {
               <div className="row mt-4">
                 {searchResults.map((resource, index) => (
                   <div className="col-md-4 mb-4" key={index}>
-                    <div className="card h-100" style={{borderColor:"gray"}}>{/* Border for card */}
-                      <img 
-                        src={resource.file_urls[0]} 
-                        className="card-img-top" 
-                        alt={resource.title} 
-                        style={{ height: '150px', objectFit: 'cover' }} 
-                      />
+                    <div className="card h-100" style={{ borderColor: "gray" }}>
+                      <Thumbnail resource={resource} />
                       <div className="card-body">
                         <h5 className="card-title">{resource.title}</h5>
-                        <p className="card-text" style={{color:"gray"}}>{resource.description.slice(0, 100)}...</p>
+                        <p className="card-text" style={{ color: "gray" }}>
+                          {resource.description.slice(0, 100)}...
+                        </p>
 
                         <div className="tags mt-2">
                           {resource.tags && resource.tags.length > 0 && resource.tags.map((tag: string, tagIndex: number) => (
