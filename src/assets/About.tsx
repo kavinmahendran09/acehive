@@ -11,7 +11,7 @@ const About: React.FC = () => {
       {/* Banner Section */}
       <header className="bg-dark text-white text-center py-5">
         <div className="container">
-          <h1 className="display-4">About Us</h1>
+          <h1 className="display-4" style={{fontWeight :"500"}}>About Us</h1>
           <p className="lead">Learn more about our mission, values, and the team behind <strong>Acehive</strong>.</p>
         </div>
       </header>
@@ -107,17 +107,93 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Special Thanks Section */}
+          {/* Team Acknowledgment Section */}
           <div className="mt-5 text-center">
-            <h3>Special Thanks</h3>
-            <p>We would like to extend our gratitude to the following individuals for their invaluable support:</p>
-            <ul className="list-unstyled">
-              <li>Placeholder</li>
-              <li>Placeholder</li>
-              <li>Placeholder</li>
-              <li>Placeholder</li>
-            </ul>
+            <h3 className="mb-4">Our Resource Management Team</h3>
+            <p className="mb-5">
+              We are grateful to the following team members for their exceptional efforts 
+              in managing and curating resources:
+            </p>
+            <div className="container">
+              <div className="row justify-content-center">
+                {/* First Card */}
+                <div className="col-md-6 mb-4">
+                  <div className="card shadow-sm d-flex flex-row align-items-center p-3">
+                    <img 
+                      src="" 
+                      className="rounded-circle me-3" 
+                      alt="Member 1" 
+                      style={{ width: "70px", height: "70px" }} 
+                    />
+                    <div className="flex-grow-1 text-center">
+                      <h5 className="mb-1">Member 1</h5>
+                    </div>
+                    <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener noreferrer">
+                      <i className="bi bi-linkedin fs-1 text-primary"></i>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Second Card */}
+                <div className="col-md-6 mb-4">
+                  <div className="card shadow-sm d-flex flex-row align-items-center p-3">
+                    <img 
+                      src="path_to_image2.jpg" 
+                      className="rounded-circle me-3" 
+                      alt="Member 2" 
+                      style={{ width: "70px", height: "70px" }} 
+                    />
+                    <div className="flex-grow-1 text-center">
+                      <h5 className="mb-1">Member 2</h5>
+                    </div>
+                    <a href="https://linkedin.com/in/member2" target="_blank" rel="noopener noreferrer">
+                      <i className="bi bi-linkedin fs-1 text-primary"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row justify-content-center">
+                {/* Third Card */}
+                <div className="col-md-6 mb-4">
+                  <div className="card shadow-sm d-flex flex-row align-items-center p-3">
+                    <img 
+                      src="path_to_image3.jpg" 
+                      className="rounded-circle me-3" 
+                      alt="Member 3" 
+                      style={{ width: "70px", height: "70px" }} 
+                    />
+                    <div className="flex-grow-1 text-center">
+                      <h5 className="mb-1">Member 3</h5>
+                    </div>
+                    <a href="https://linkedin.com/in/member3" target="_blank" rel="noopener noreferrer">
+                      <i className="bi bi-linkedin fs-1 text-primary"></i>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Fourth Card */}
+                <div className="col-md-6 mb-4">
+                  <div className="card shadow-sm d-flex flex-row align-items-center p-3">
+                    <img 
+                      src="path_to_image4.jpg" 
+                      className="rounded-circle me-3" 
+                      alt="Member 4" 
+                      style={{ width: "70px", height: "70px" }} 
+                    />
+                    <div className="flex-grow-1 text-center">
+                      <h5 className="mb-1">Member 4</h5>
+                    </div>
+                    <a href="https://linkedin.com/in/member4" target="_blank" rel="noopener noreferrer">
+                      <i className="bi bi-linkedin fs-1 text-primary"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+
         </div>
       </section>
 
