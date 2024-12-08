@@ -9,6 +9,7 @@ import About from './assets/About';
 import ScrollToTop from './assets/ScrollToTop'; // Import ScrollToTop
 import { pdfjs } from 'react-pdf'; // Import pdfjs from react-pdf
 import { Analytics } from '@vercel/analytics/react'; // Import Analytics
+import PrivacyPolicy from './assets/PrivacyPolicy';
 
 // Set the worker source for PDF rendering
 pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
@@ -42,6 +43,7 @@ function App() {
         <Route path="/ct-home" element={<CTHome />} />
         <Route path="/resource-view" element={<ResourceView />} />
         <Route path="/about" element={<About />} /> {/* Add About Route */}
+        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> {/* Add About Route */}
 
         {/* Admin Routes */}
         <Route path="/admin-login" element={<AdminLogin onLogin={handleLogin} />} />

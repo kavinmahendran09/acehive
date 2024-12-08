@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { FaBook, FaClipboard, FaFolderOpen, FaTable } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import supabase from './supabaseClient'; // Import Supabase client
+import supabase from './supabaseClient'; 
 
 const Home: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
       {/* Banner Section */}
       <header className="bg-dark text-white text-center py-5">
         <div className="container px-3 px-md-5">
-          <h1 className="display-4 font-weight-bold">Welcome to <strong>Acehive</strong></h1>
+          <h1 className="display-4 font-weight-bold" style={{fontWeight :"500"}}>Welcome to <strong>Acehive</strong></h1>
           <p className="lead" style={{ color: '#A9A9A9' }}>
             Your one-stop destination for Resources!
           </p>
@@ -95,20 +95,19 @@ const Home: React.FC = () => {
               Find Resources Instantly
             </h1>
             <p className="lead">
-              Simplify your academic journey with quick access to curated resources 
-              designed for SRM students. 
+              Simplify your academic journey with quick access to curated resources. 
             </p>
             <ul className="list-unstyled mt-4">
-              <li className="mb-2">
-                <i className="text-primary me-2" style={{ fontSize: '1.2rem' }}>✔</i>
+              <li className="mb-3">
+                <i className="text-dark me-2" style={{ fontSize: '1.2rem' }}>✔</i>
                 Filter by year, subject, and specialization.
               </li>
-              <li className="mb-2">
-                <i className="text-primary me-2" style={{ fontSize: '1.2rem' }}>✔</i>
+              <li className="mb-3">
+                <i className="text-dark me-2" style={{ fontSize: '1.2rem' }}>✔</i>
                 Quickly locate study materials and papers.
               </li>
               <li className="mb-2">
-                <i className="text-primary me-2" style={{ fontSize: '1.2rem' }}>✔</i>
+                <i className="text-dark me-2" style={{ fontSize: '1.2rem' }}>✔</i>
                 Save time with precise search results.
               </li>
             </ul>
@@ -140,7 +139,7 @@ const Home: React.FC = () => {
         <div className="col d-flex flex-column align-items-start gap-2">
           <h2 className="fw-bold text-body-emphasis">Streamline Your Study Preparation with Acehive</h2>
           <p className="text-body-secondary">
-            Discover the powerful features of Acehive that help SRM students efficiently access and organize university resources, including Cycle Test papers, Semester papers, and study materials.
+            Discover the powerful features of Acehive that help students efficiently access and organize university resources, including Cycle Test papers, Semester papers, and study materials.
           </p>
           <Link to="/ct-home" className="btn btn-dark">Get Started</Link>
         </div>

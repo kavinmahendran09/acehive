@@ -102,7 +102,7 @@ const CTHome: React.FC = () => {
 
     if (isPdf) {
       return (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '150px', backgroundColor: '#f4f4f4' }}>
+        <div className="d-flex justify-content-center align-items-center" style={{ height: '150px', backgroundColor: '#f4f4f4' , borderRadius : "5px"}}>
           <div className="d-flex flex-column align-items-center">
             <i className="bi bi-file-earmark-pdf" style={{ fontSize: '3rem', color: '#e74c3c' }}></i>
             <span className="mt-2" style={{ fontSize: '1.2rem' }}>{numberInTitle}</span>
@@ -172,7 +172,7 @@ const CTHome: React.FC = () => {
                       <div className="card-body">
                         <h5 className="card-title">{resource.title}</h5>
                         <p className="card-text" style={{ color: "gray" }}>
-                          {resource.description.slice(0, 100)}...
+                          {resource.description.slice(0, 85)}...
                         </p>
 
                         <div className="tags mt-2">

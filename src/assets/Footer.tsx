@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import supabase from './supabaseClient'; // Ensure this path matches your project structure
+import { Link, useNavigate } from 'react-router-dom'; 
+import supabase from './supabaseClient'; 
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
   const [alertType, setAlertType] = useState<'success' | 'danger' | null>(null);
+  const navigate = useNavigate();
 
   const handleEmailSubmission = async () => {
     if (!email) {
@@ -31,7 +32,7 @@ const Footer: React.FC = () => {
       console.log('Email submitted successfully:', data);
       setAlertType('success');
       setSubmissionStatus('Submitted successfully! We’ll get back to you.');
-      setEmail(''); // Clear the input field
+      setEmail('');
       dismissAlertAfterTimeout();
     } catch (err) {
       console.error('Unexpected error:', err);
@@ -45,15 +46,14 @@ const Footer: React.FC = () => {
     setTimeout(() => {
       setSubmissionStatus(null);
       setAlertType(null);
-    }, 4000); // 4 seconds
+    }, 4000); 
   };
 
-  const handleScrollToBottom = () => {
-    // This will scroll to the bottom of the About page after it loads
-    const bottomElement = document.getElementById('bottom-of-about');
-    if (bottomElement) {
-      bottomElement.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleScrollToBottom = (path: string) => {
+    navigate(path); 
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 100); 
   };
 
   return (
@@ -64,13 +64,13 @@ const Footer: React.FC = () => {
             <h5>University Resources</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
-                <Link to="/ct-home" className="nav-link p-0 text-white">CT Papers</Link>
+                <Link to="/ct-home" className="nav-link p-0 text-white" state={{ resourceType: "CT Paper" }}>CT Papers</Link>
               </li>
               <li className="nav-item mb-2">
-                <Link to="/ct-home" className="nav-link p-0 text-white">Semester Papers</Link>
+                <Link to="/ct-home" className="nav-link p-0 text-white" state={{ resourceType: "Sem Paper" }}>Semester Papers</Link>
               </li>
               <li className="nav-item mb-2">
-                <Link to="/ct-home" className="nav-link p-0 text-white">Study Materials</Link>
+                <Link to="/ct-home" className="nav-link p-0 text-white" state={{ resourceType: "Study Materials" }}>Study Materials</Link>
               </li>
             </ul>
           </div>
@@ -79,19 +79,17 @@ const Footer: React.FC = () => {
             <h5>Support & Help</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
-                {/* Link to About page and scroll to the bottom */}
-                <Link 
-                  to="/about" 
-                  className="nav-link p-0 text-white" 
-                  onClick={handleScrollToBottom}
+                <span
+                  className="nav-link p-0 text-white"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => handleScrollToBottom('/about')}
                 >
                   FAQs
-                </Link>
+                </span>
               </li>
               <li className="nav-item mb-2">
-                {/* Contact email link */}
-                <a 
-                  href="mailto:archiveatsrm@gmail.com" 
+                <a
+                  href="mailto:archiveatsrm@gmail.com"
                   className="nav-link p-0 text-white"
                 >
                   Contact Support
@@ -101,20 +99,15 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="col-6 col-md-2 mb-3">
-            <h5>Privacy & Terms</h5>
-            <ul className="nav flex-column">
-              <li className="nav-item mb-2">
-                {/* Link to About page and scroll to the bottom */}
-                <Link 
-                  to="/about" 
-                  className="nav-link p-0 text-white" 
-                  onClick={handleScrollToBottom}
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <h5>Privacy & Terms</h5>
+          <ul className="nav flex-column">
+            <li className="nav-item mb-2">
+              <Link to="/PrivacyPolicy" className="nav-link p-0 text-white" style={{ cursor: 'pointer' }}>
+                Privacy Policy
+              </Link>
+            </li>
+          </ul>
+        </div>
 
           <div className="col-md-5 offset-md-1 mb-3">
             <form
