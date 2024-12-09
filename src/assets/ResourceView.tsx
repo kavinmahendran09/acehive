@@ -203,7 +203,7 @@ const ResourceView: React.FC = () => {
           </div>
         ) : (
           <div className="row">
-            {similarResources.map((resource: any, index: number) => (
+            {similarResources.slice(0, 12).map((resource: any, index: number) => ( // Limit to top 12
               <div className="col-md-4 mb-4" key={index}>
                 <div className="card h-100" style={{ borderColor: "gray" }}>
                   <Thumbnail resource={resource} />
@@ -230,6 +230,7 @@ const ResourceView: React.FC = () => {
           </div>
         )}
       </div>
+
 
       <Footer />
     </div>
