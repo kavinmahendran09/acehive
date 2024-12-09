@@ -85,18 +85,33 @@ const Filters: React.FC<FiltersProps> = ({
 
   const subjectOptions =
     year === '1st Year'
-      ? [
-          'Communicative English',
-          'Calculus and Linear Algebra',
-          'Electrical and Electronics Engineering',
-          'Semiconductor Physics and Computational Methods',
-          'Programming for Problem Solving',
-          'Advanced Calculus and Complex Analysis',
-          'Chemistry',
-          'Introduction to Computational Biology',
-          'Object Oriented Design and Programming',
-          'Philosophy of Engineering',
-        ]
+      ? degree === 'Biotechnology'
+        ? [
+            'Communicative English',
+            'Calculus and Linear Algebra',
+            'Electrical and Electronics Engineering',
+            'Semiconductor Physics and Computational Methods',
+            'Programming for Problem Solving',
+            'Advanced Calculus and Complex Analysis',
+            'Chemistry',
+            'Introduction to Computational Biology',
+            'Object Oriented Design and Programming',
+            'Philosophy of Engineering',
+            'Cell Biology',
+            'Biochemistry', // Additional subjects for 1st Year Biotechnology
+          ]
+        : [
+            'Communicative English',
+            'Calculus and Linear Algebra',
+            'Electrical and Electronics Engineering',
+            'Semiconductor Physics and Computational Methods',
+            'Programming for Problem Solving',
+            'Advanced Calculus and Complex Analysis',
+            'Chemistry',
+            'Introduction to Computational Biology',
+            'Object Oriented Design and Programming',
+            'Philosophy of Engineering',
+          ]
       : specialisation === 'Artificial Intelligence and Machine Learning'
       ? ['Computer Networks', 'Discrete Mathematics', 'Machine Learning', 'Formal Language and Automata']
       : [];
