@@ -1,8 +1,27 @@
 {
-  "rewrites": [
+  "regions": ["bom1"],
+  "cleanUrls": true,
+  "framework": "react",
+  "redirects": [
     {
-      "source": "/:path*",
-      "destination": "/index.html"
+      "source": "/about",
+      "destination": "https://acehive.vercel.app/about",
+      "permanent": true
+    },
+    {
+      "source": "/PrivacyPolicy",
+      "destination": "https://acehive.vercel.app/PrivacyPolicy",
+      "permanent": true
+    },
+    {
+      "source": "/ct-home",
+      "destination": "https://acehive.vercel.app/ct-home",
+      "permanent": true
+    },
+    {
+      "source": "/resource-view",
+      "destination": "https://acehive.vercel.app/resource-view",
+      "permanent": true
     }
   ]
 }
