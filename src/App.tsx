@@ -44,7 +44,7 @@ function App() {
         <Route path="/ct-home" element={<CTHome />} />
         <Route path="/resource-view" element={<ResourceView />} />
         <Route path="/about" element={<About />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* Updated path to lowercase */}
+        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> {/* Updated path to lowercase */}
 
         {/* Admin Routes */}
         <Route path="/admin-login" element={<AdminLogin onLogin={handleLogin} />} />
