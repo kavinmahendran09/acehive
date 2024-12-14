@@ -10,6 +10,7 @@ import ScrollToTop from './assets/ScrollToTop'; // Import ScrollToTop
 import { pdfjs } from 'react-pdf'; // Import pdfjs from react-pdf
 import { Analytics } from '@vercel/analytics/react'; // Import Analytics
 import PrivacyPolicy from './assets/PrivacyPolicy';
+import NotFound from './assets/NotFound'; // Import NotFound page
 
 // Set the worker source for PDF rendering
 pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
@@ -42,8 +43,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/ct-home" element={<CTHome />} />
         <Route path="/resource-view" element={<ResourceView />} />
-        <Route path="/about" element={<About />} /> {/* Add About Route */}
-        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> {/* Add About Route */}
+        <Route path="/about" element={<About />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* Updated path to lowercase */}
 
         {/* Admin Routes */}
         <Route path="/admin-login" element={<AdminLogin onLogin={handleLogin} />} />
@@ -54,8 +55,8 @@ function App() {
           element={isAuthenticated ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/admin-login" />}
         />
 
-        {/* Fallback route */}
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* Fallback route for non-existing routes */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       {/* Add Vercel Analytics */}
