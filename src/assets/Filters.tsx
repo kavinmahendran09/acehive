@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface FiltersProps {
   year: string | null;
@@ -29,7 +29,8 @@ const Filters: React.FC<FiltersProps> = ({
   handleSearch,
   warning,
 }) => {
-  // Define options dynamically based on the selected values
+  const [isLoading, setIsLoading] = useState(false);
+
   const specialisationOptions =
     degree === 'Computer Science'
       ? [
@@ -98,7 +99,7 @@ const Filters: React.FC<FiltersProps> = ({
             'Object Oriented Design and Programming',
             'Philosophy of Engineering',
             'Cell Biology',
-            'Biochemistry', // Additional subjects for 1st Year Biotechnology
+            'Biochemistry',
           ]
         : [
             'Communicative English',
@@ -127,23 +128,29 @@ const Filters: React.FC<FiltersProps> = ({
 
   const electiveOptions =
     year === '1st Year'
-      ? languageOptions // Only languages should appear for 1st Year
+      ? languageOptions
       : specialisation === 'Artificial Intelligence and Machine Learning'
       ? ['Disaster Mitigation and Management', 'Gen AI', 'Cloud Computing']
       : [];
 
   const handleYearChange = (y: string) => {
     setYear(y);
-    setSpecialisation(null); // Reset specialisation
-    setSubject(null); // Reset subject
-    setElective(null); // Reset elective
+    setSpecialisation(null); 
+    setSubject(null);
+    setElective(null);
   };
 
   const handleDegreeChange = (d: string) => {
     setDegree(d);
-    setSpecialisation(null); // Reset specialisation
-    setSubject(null); // Reset subject
-    setElective(null); // Reset elective
+    setSpecialisation(null); 
+    setSubject(null);
+    setElective(null); 
+  };
+
+  const handleSearchClick = async () => {
+    setIsLoading(true); 
+    await handleSearch(); 
+    setIsLoading(false);
   };
 
   return (
@@ -185,7 +192,7 @@ const Filters: React.FC<FiltersProps> = ({
           className="form-select"
           value={specialisation || ''}
           onChange={(e) => setSpecialisation(e.target.value)}
-          disabled={!year || !degree} // Disable if Year or Degree is not selected
+          disabled={!year || !degree}
         >
           <option value="" disabled>
             Select Specialisation
@@ -204,7 +211,7 @@ const Filters: React.FC<FiltersProps> = ({
           value={subject || ''}
           onChange={(e) => {
             setSubject(e.target.value);
-            setElective(null); // Reset elective when subject changes
+            setElective(null);
           }}
           disabled={!year || !degree || !specialisation}
         >
@@ -226,7 +233,7 @@ const Filters: React.FC<FiltersProps> = ({
           value={elective || ''}
           onChange={(e) => {
             setElective(e.target.value);
-            setSubject(null); // Reset subject when elective changes
+            setSubject(null);
           }}
           disabled={!year || !degree || !specialisation}
         >
@@ -240,8 +247,16 @@ const Filters: React.FC<FiltersProps> = ({
           ))}
         </select>
       </div>
-      <button className="btn btn-dark w-100 mt-3" onClick={handleSearch} disabled={!specialisation}>
-        Search
+      <button
+        className="btn btn-dark w-100 mt-3"
+        onClick={handleSearchClick}
+        disabled={!subject && !elective || isLoading}
+      >
+        {isLoading ? (
+          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        ) : (
+          'Search'
+        )}
       </button>
       {warning && (
         <div className="alert alert-danger mt-2" role="alert">
