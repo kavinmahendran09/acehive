@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { fetchResources } from './supabaseClient'; // Assuming this is the function to fetch resources from Supabase
+import { fetchResources } from './supabaseClient';
 
 const ResourceView: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +17,6 @@ const ResourceView: React.FC = () => {
     navigate('/ct-home', { state: searchState });
   };
 
-  // Function to fetch similar resources based on the tags
   const fetchSimilarResources = async () => {
     const allTags = resource.tags || [];
     const tagCombinations = getTagCombinations(allTags);
@@ -25,13 +24,12 @@ const ResourceView: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const results = await fetchResources({ tags: tagCombinations }, resource.resourceType); // Assuming this function handles fetching based on tags
+      const results = await fetchResources({ tags: tagCombinations }, resource.resourceType);
 
-      // Sort by the number of matching tags
       const sortedResults = results.sort((a: any, b: any) => {
         const aMatches = countMatchingTags(a.tags, allTags);
         const bMatches = countMatchingTags(b.tags, allTags);
-        return bMatches - aMatches; // Sort in descending order
+        return bMatches - aMatches;
       });
 
       setSimilarResources(sortedResults);
@@ -42,7 +40,6 @@ const ResourceView: React.FC = () => {
     }
   };
 
-  // Function to get combinations of tags (all tags, 3 tags, 2 tags, etc.)
   const getTagCombinations = (tags: string[]) => {
     const combinations: string[][] = [];
     for (let i = tags.length; i > 0; i--) {
@@ -51,7 +48,6 @@ const ResourceView: React.FC = () => {
     return combinations;
   };
 
-  // Function to generate combinations of tags
   const combineTags = (tags: string[], length: number): string[][] => {
     const combinations: string[][] = [];
     const combine = (start: number, comb: string[]) => {
@@ -67,12 +63,10 @@ const ResourceView: React.FC = () => {
     return combinations;
   };
 
-  // Function to count how many tags match between two arrays
   const countMatchingTags = (resourceTags: string[], searchTags: string[]): number => {
     return resourceTags.filter((tag) => searchTags.includes(tag)).length;
   };
 
-  // Function to display thumbnail for resource cards
   const Thumbnail: React.FC<{ resource: any }> = ({ resource }) => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
@@ -88,11 +82,11 @@ const ResourceView: React.FC = () => {
     }
 
     const isPdf = resource.file_urls[0]?.toLowerCase().endsWith('.pdf');
-    const numberInTitle = resource.title.match(/\d+/)?.[0] || ''; // Extract number from title
+    const numberInTitle = resource.title.match(/\d+/)?.[0] || '';
 
     if (isPdf) {
       return (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', backgroundColor: '#f4f4f4',borderRadius :"5px" }}>
+        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px', backgroundColor: '#f4f4f4', borderRadius: "5px" }}>
           <div className="d-flex flex-column align-items-center">
             <i className="bi bi-file-earmark-pdf" style={{ fontSize: '3rem', color: '#e74c3c' }}></i>
             <span className="mt-2" style={{ fontSize: '1.2rem' }}>{numberInTitle}</span>
@@ -106,12 +100,11 @@ const ResourceView: React.FC = () => {
         src={resource.file_urls[0]}
         className="card-img-top"
         alt={resource.title}
-        style={{ height: '200px', objectFit: 'cover' }} // Updated height for non-Safari and non-PDF images
+        style={{ height: '200px', objectFit: 'cover' }}
       />
     );
   };
 
-  // UseEffect to fetch similar resources when the page loads
   useEffect(() => {
     fetchSimilarResources();
   }, [resource]);
@@ -120,12 +113,10 @@ const ResourceView: React.FC = () => {
     <div>
       <Navbar />
 
-      {/* Banner */}
       <div className="bg-dark text-white py-5 text-center">
         <h1 className="display-4">{resource.title}</h1>
       </div>
 
-      {/* Tags Section */}
       <div className="container my-4">
         <h3>Tags</h3>
         <div>
@@ -141,11 +132,8 @@ const ResourceView: React.FC = () => {
         </div>
       </div>
 
-      {/* Content Section */}
       <div className="container my-4">
         <h3>Content</h3>
-
-        {/* Content Box with Images and PDF */}
         <div
           className="w-100 mb-4 p-4"
           style={{
@@ -164,7 +152,7 @@ const ResourceView: React.FC = () => {
           <h4>Resource:</h4>
           <div className="row">
             {resource.file_urls.map((url: string, index: number) => (
-              <div key={index} className="col-md-4 mb-3">
+              <div key={index} className="col-md-12 mb-3">
                 {url.endsWith('.pdf') ? (
                   <div style={{ height: '700px', overflowY: 'scroll', width: '82.5vw' }}>
                     <iframe
@@ -175,7 +163,18 @@ const ResourceView: React.FC = () => {
                     />
                   </div>
                 ) : (
-                  <img src={url} alt={`Image ${index + 1}`} className="img-fluid" style={{ borderRadius: '12px' }} />
+                  <img
+                    src={url}
+                    alt={`Image ${index + 1}`}
+                    className="img-fluid"
+                    style={{
+                      borderRadius: '12px',
+                      maxWidth: '100%',
+                      height: 'auto',
+                      margin: '0 auto',
+                      display: 'block',
+                    }}
+                  />
                 )}
               </div>
             ))}
@@ -183,7 +182,6 @@ const ResourceView: React.FC = () => {
         </div>
       </div>
 
-      {/* Back Button */}
       <div className="container my-4">
         <div className="text-start">
           <button onClick={handleBack} className="btn btn-dark btn-lg">
@@ -192,7 +190,6 @@ const ResourceView: React.FC = () => {
         </div>
       </div>
 
-      {/* Similar Resources Section */}
       <div className="container my-4">
         <h1>Similar Resources</h1>
         {isLoading ? (
@@ -203,7 +200,7 @@ const ResourceView: React.FC = () => {
           </div>
         ) : (
           <div className="row">
-            {similarResources.slice(0, 12).map((resource: any, index: number) => ( // Limit to top 12
+            {similarResources.slice(0, 12).map((resource: any, index: number) => (
               <div className="col-md-4 mb-4" key={index}>
                 <div className="card h-100" style={{ borderColor: "gray" }}>
                   <Thumbnail resource={resource} />
@@ -230,7 +227,6 @@ const ResourceView: React.FC = () => {
           </div>
         )}
       </div>
-
 
       <Footer />
     </div>
