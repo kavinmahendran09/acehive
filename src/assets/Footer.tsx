@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
-import supabase from './supabaseClient'; 
+import { Link, useNavigate } from 'react-router-dom';
+import supabase from './supabaseClient';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
   const [alertType, setAlertType] = useState<'success' | 'danger' | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleEmailSubmission = async () => {
+  const handleEmailSubmission = async (retryCount = 0) => {
     if (!email) {
       setAlertType('danger');
       setSubmissionStatus('Please enter a valid email address.');
       dismissAlertAfterTimeout();
       return;
     }
+
+    setIsLoading(true);
 
     try {
       const { data, error } = await supabase
@@ -23,8 +26,14 @@ const Footer: React.FC = () => {
 
       if (error) {
         console.error('Error saving email:', error);
-        setAlertType('danger');
-        setSubmissionStatus('Failed to submit. Please try again later.');
+
+        if (retryCount < 2) {
+          console.log(`Retrying... Attempt ${retryCount + 1}`);
+          await handleEmailSubmission(retryCount + 1); 
+        } else {
+          setAlertType('danger');
+          setSubmissionStatus('Failed to submit. Please try again later.');
+        }
         dismissAlertAfterTimeout();
         return;
       }
@@ -33,11 +42,18 @@ const Footer: React.FC = () => {
       setAlertType('success');
       setSubmissionStatus('Submitted successfully! We’ll get back to you.');
       setEmail('');
-      dismissAlertAfterTimeout();
     } catch (err) {
       console.error('Unexpected error:', err);
-      setAlertType('danger');
-      setSubmissionStatus('An unexpected error occurred. Please try again.');
+
+      if (retryCount < 2) {
+        console.log(`Retrying... Attempt ${retryCount + 1}`);
+        await handleEmailSubmission(retryCount + 1); 
+      } else {
+        setAlertType('danger');
+        setSubmissionStatus('An unexpected error occurred. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
       dismissAlertAfterTimeout();
     }
   };
@@ -46,14 +62,14 @@ const Footer: React.FC = () => {
     setTimeout(() => {
       setSubmissionStatus(null);
       setAlertType(null);
-    }, 4000); 
+    }, 4000);
   };
 
   const handleScrollToBottom = (path: string) => {
-    navigate(path); 
+    navigate(path);
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }, 100); 
+    }, 100);
   };
 
   return (
@@ -99,15 +115,15 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="col-6 col-md-2 mb-3">
-          <h5>Privacy & Terms</h5>
-          <ul className="nav flex-column">
-            <li className="nav-item mb-2">
-              <Link to="/PrivacyPolicy" className="nav-link p-0 text-white" style={{ cursor: 'pointer' }}>
-                Privacy Policy
-              </Link>
-            </li>
-          </ul>
-        </div>
+            <h5>Privacy & Terms</h5>
+            <ul className="nav flex-column">
+              <li className="nav-item mb-2">
+                <Link to="/PrivacyPolicy" className="nav-link p-0 text-white" style={{ cursor: 'pointer' }}>
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
 
           <div className="col-md-5 offset-md-1 mb-3">
             <form
@@ -128,7 +144,13 @@ const Footer: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <button className="btn btn-outline-light" type="submit">Connect</button>
+                <button className="btn btn-outline-light" type="submit" disabled={isLoading}>
+                  {isLoading ? (
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  ) : (
+                    'Connect'
+                  )}
+                </button>
               </div>
             </form>
             {submissionStatus && (
