@@ -73,9 +73,9 @@ const About: React.FC = () => {
                 <p className="card-text">Founder & Project Developer</p>
 
                 {/* Social Links */}
-                <div>
-                  <a href="https://www.linkedin.com/in/kavin-bharathi-081577252/" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
-                    <FaLinkedin size={30} />
+                <div className="d-flex align-items-center">
+                  <a href="https://kavindev.vercel.app" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
+                    <i className="bi bi-globe" style={{ fontSize: '30px' }}></i>
                   </a>
                   <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
                     <FaGithub size={30} />
