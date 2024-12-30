@@ -17,9 +17,9 @@ const PrivacyPolicy: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <div className="container my-5 px-5"> {/* Padding applied to the entire section */}
-        <div className="row justify-content-center">
-          <div className="col-md-8">
+      <div className="container my-5 px-5"> 
+        <div className="row">
+          <div className="col-md-12">
             <h2 className="mb-4" style={{ fontSize: '2.5rem' }}>
               <FaFileAlt className="me-2" style={{ fontSize: '2.5rem' }} />
               Privacy Policy
