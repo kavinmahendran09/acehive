@@ -233,7 +233,7 @@ const About: React.FC = () => {
                 </button>
               </h2>
               <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                <div className="accordion-body">
+                <div className="accordion-body" style={{ fontWeight : '300' }}>
                   We provide a variety of resources, including CT papers, Semester papers, and study materials, all organized by subject and year.
                 </div>
               </div>
@@ -245,7 +245,7 @@ const About: React.FC = () => {
                 </button>
               </h2>
               <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                <div className="accordion-body">
+                <div className="accordion-body" style={{ fontWeight : '300' }}>
                   Simply navigate to the resource section on our homepage, where you can filter and select the resources you need.
                 </div>
               </div>
@@ -257,9 +257,10 @@ const About: React.FC = () => {
                 </button>
               </h2>
               <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                <div className="accordion-body">
-                  You can reach us through our contact page or email us at archiveatsrm@gmail.com.
-                </div>
+              <div className="accordion-body" style={{ fontWeight : '300' }}>
+              You can reach us through our contact page or email us at 
+              <a href="mailto:archiveatsrm@gmail.com" style={{ marginLeft: '5px'}}>archiveatsrm@gmail.com</a>.
+            </div>
               </div>
             </div>
           </div>
