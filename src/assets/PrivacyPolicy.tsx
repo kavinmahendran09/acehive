@@ -31,7 +31,9 @@ const PrivacyPolicy: React.FC = () => {
             </p>
 
             <p style={{ textAlign: 'justify', lineHeight: '1.6' }}>
-              We do not claim ownership of any resources or data provided by third parties. The materials shared through our platform, including notes, study materials, and previous exam papers, are obtained from publicly available sources and are intended for educational purposes only. By using this platform, you acknowledge that you are using materials that are made available for your academic benefit and do not infringe upon any intellectual property rights.
+              <em style={{ fontStyle: 'italic', color: 'red' }}>
+                We do NOT claim ownership of any resources or data provided
+              </em> by third parties. The materials shared through our platform, including notes, study materials, and previous exam papers, are obtained from publicly available sources and are intended for educational purposes only. By using this platform, you acknowledge that you are using materials that are made available for your academic benefit and do not infringe upon any intellectual property rights.
             </p>
 
             <p style={{ textAlign: 'justify', lineHeight: '1.6' }}>
