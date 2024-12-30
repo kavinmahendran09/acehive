@@ -14,13 +14,12 @@ const CTHome: React.FC = () => {
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [warning, setWarning] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [resourceType, setResourceType] = useState<string>('CT Paper'); // Default to 'CT Paper'
+  const [resourceType, setResourceType] = useState<string>('CT Paper'); 
 
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Set the resourceType from location state, if available
     if (location.state?.resourceType) {
       setResourceType(location.state.resourceType);
     }
@@ -47,19 +46,15 @@ const CTHome: React.FC = () => {
         let results;
 
         if (year === '1st Year') {
-          // If 1st Year is selected, search only by subject or elective
           results = await fetchResources({ year: '1st Year', subject, elective }, resourceType);
         } else {
-          // If not 1st Year, use all selected filters
           results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
         }
 
-        // Sort the results alphabetically by title
         results = results.sort((a: any, b: any) => a.title.localeCompare(b.title));
 
         setSearchResults(results);
         
-        // Add a message if no results found
         if (results.length === 0) {
           setWarning('No resources found matching your criteria.');
         }
@@ -82,7 +77,6 @@ const CTHome: React.FC = () => {
     navigate('/resource-view', { state: { ...resource, resourceType, searchState: { year, degree, specialisation, subject, elective, results: searchResults, resourceType } } });
   };
 
-  // Component for displaying the thumbnail
   const Thumbnail: React.FC<{ resource: any }> = ({ resource }) => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
@@ -98,7 +92,7 @@ const CTHome: React.FC = () => {
     }
 
     const isPdf = resource.file_urls[0]?.toLowerCase().endsWith('.pdf');
-    const numberInTitle = resource.title.match(/\d+/)?.[0] || ''; // Extract number from title
+    const numberInTitle = resource.title.match(/\d+/)?.[0] || '';
 
     if (isPdf) {
       return (
@@ -124,8 +118,7 @@ const CTHome: React.FC = () => {
   return (
     <div>
       <Navbar />
-
-      {/* Banner Section */}
+      
       <div className="bg-dark text-white text-center py-3 mb-4 py-5">
         <h1 className="m-0">{resourceType}</h1>
         <p className="m-0">Explore curated {resourceType} resources for your needs</p>
