@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="row">
           <div className="col-6 col-md-2 mb-3">
-            <h5>University Resources</h5>
+            <h5>Resources</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
                 <Link to="/ct-home" className="nav-link p-0 text-white" state={{ resourceType: "CT Paper" }}>CT Papers</Link>
@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-          <p>&copy; 2024 Acehive, All rights reserved.</p>
+          <p>&copy; 2024 Acehive</p>
         </div>
       </div>
     </footer>
