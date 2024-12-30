@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
               }}
             >
               <h5>Want to Collaborate or Promote with Us?</h5>
-              <p>If you're interested in promotions, or collaborations, let's connect!</p>
+              <p>Interested in promotions, or collaborations?, let's connect!</p>
               <div className="d-flex flex-column flex-sm-row w-100 gap-2">
                 <label htmlFor="newsletter1" className="visually-hidden">Email address</label>
                 <input
