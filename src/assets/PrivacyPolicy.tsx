@@ -24,7 +24,7 @@ const PrivacyPolicy: React.FC = () => {
               <FaFileAlt className="me-2" style={{ fontSize: '2.5rem' }} />
               Privacy Policy
             </h2>
-            <p className="text-start text-primary">Last Updated: 07 December 2024</p>
+            <p className="text-start text-primary">Last Updated: 01 January 2025</p>
 
             <p style={{ textAlign: 'justify', lineHeight: '1.6' }}>
               At Acehive, we value your privacy. This privacy policy outlines how we collect, use, and protect your personal data. We collect data from students to provide relevant educational resources and materials through our platform. All data collected is sourced from publicly available resources or submitted voluntarily by users.
@@ -44,7 +44,7 @@ const PrivacyPolicy: React.FC = () => {
 
             <h3 className="mb-3"><FaShieldAlt className="me-2" /> Data Collection</h3>
             <p style={{ textAlign: 'justify', lineHeight: '1.6' }}>
-              We do not collect any personal information beyond what is voluntarily provided by users during registration or use of the platform. No sensitive information, such as payment details, is collected. We respect your privacy and only store the information necessary for delivering the platform's functionality.
+              We do not collect any personal information from users, except when they voluntarily submit feedback or express interest in collaborating. In such cases, any submitted email addresses are kept private, secure, and are not reflected, shared, or leaked to any third parties No sensitive information, such as payment details, is collected. We respect your privacy and only store the information necessary for delivering the platform's functionality.
             </p>
 
             <hr className="my-4" />
