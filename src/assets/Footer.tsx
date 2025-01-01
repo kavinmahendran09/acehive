@@ -140,7 +140,7 @@ const Footer: React.FC = () => {
                   id="newsletter1"
                   type="email"
                   className="form-control"
-                  placeholder="Your email address"
+                  placeholder="Enter email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
