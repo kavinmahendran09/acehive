@@ -77,7 +77,7 @@ const About: React.FC = () => {
                   <a href="https://kavindev.vercel.app" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
                     <i className="bi bi-globe" style={{ fontSize: '30px' }}></i>
                   </a>
-                  <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
+                  <a href="https://github.com/kavinmahendran09" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
                     <FaGithub size={30} />
                   </a>
                 </div>
