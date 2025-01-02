@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer'; 
 import { FaUsers, FaBullseye, FaRegLightbulb, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { IoEarth } from 'react-icons/io5';
 
 const About: React.FC = () => {
   return (
@@ -75,7 +76,7 @@ const About: React.FC = () => {
                 {/* Social Links */}
                 <div className="d-flex align-items-center">
                   <a href="https://kavindev.vercel.app" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
-                    <i className="bi bi-globe" style={{ fontSize: '30px' }}></i>
+                    <IoEarth size={30} />
                   </a>
                   <a href="https://github.com/kavinmahendran09" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
                     <FaGithub size={30} />
