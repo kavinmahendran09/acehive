@@ -200,31 +200,36 @@ const ResourceView: React.FC = () => {
           </div>
         ) : (
           <div className="row">
-            {similarResources.slice(0, 12).map((resource: any, index: number) => (
-              <div className="col-md-4 mb-4" key={index}>
-                <div className="card h-100" style={{ borderColor: "gray" }}>
-                  <Thumbnail resource={resource} />
-                  <div className="card-body">
-                    <h5 className="card-title">{resource.title}</h5>
-                    <p className="card-text">{resource.description.slice(0, 70)}...</p>
-                    <div className="tags mt-2">
-                      {resource.tags && resource.tags.length > 0 && resource.tags.map((tag: string, tagIndex: number) => (
-                        <span
-                          key={tagIndex}
-                          className={`badge mx-1 bg-${tagIndex % 4 === 0 ? 'primary' : tagIndex % 4 === 1 ? 'secondary' : tagIndex % 4 === 2 ? 'success' : 'dark'}`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <button onClick={() => navigate('/resource-view', { state: { ...resource, resourceType: resource.resourceType, searchState } })} className="btn btn-dark mt-2 w-100">
+          {similarResources.slice(0, 12).map((resource: any, index: number) => (
+            <div className="col-md-4 mb-4" key={index}>
+              <div className="card h-100 d-flex flex-column" style={{ borderColor: "gray" }}>
+                <Thumbnail resource={resource} />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{resource.title}</h5>
+                  <p className="card-text">{resource.description.slice(0, 70)}...</p>
+                  <div className="tags mt-2">
+                    {resource.tags && resource.tags.length > 0 && resource.tags.map((tag: string, tagIndex: number) => (
+                      <span
+                        key={tagIndex}
+                        className={`badge mx-1 bg-${tagIndex % 4 === 0 ? 'primary' : tagIndex % 4 === 1 ? 'secondary' : tagIndex % 4 === 2 ? 'success' : 'dark'}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-auto">
+                    <button
+                      onClick={() => navigate('/resource-view', { state: { ...resource, resourceType: resource.resourceType, searchState } })}
+                      className="btn btn-dark mt-2 w-100"
+                    >
                       View Resource
                     </button>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
         )}
       </div>
 
