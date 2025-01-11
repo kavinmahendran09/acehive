@@ -153,7 +153,7 @@ const Home: React.FC = () => {
 
       <div className="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
         <div className="col d-flex flex-column align-items-start gap-2">
-          <h2 className="fw-bold text-body-emphasis">Streamline Your Study Preparation with Acehive</h2>
+        <h2 className="fw-bold text-body-emphasis">Streamline Your Study Preparation with <span style={{ background: "linear-gradient(to right,rgb(16, 208, 233),rgb(22, 49, 207))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block" }}>Acehive</span></h2>
           <p className="text-body-secondary">
             Discover the powerful features of Acehive that help students efficiently access and organize university resources, including Cycle Test papers, Semester papers, and study materials.
           </p>

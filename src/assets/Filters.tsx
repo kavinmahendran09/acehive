@@ -224,7 +224,7 @@ const Filters: React.FC<FiltersProps> = ({
             </option>
           ))}
         </select>
-        <small className="text-muted">You can select either a Subject or an Elective, but not both.</small>
+        <small className="text-danger">You can select either a Subject or an Elective, but not both.</small>
       </div>
       <div className="mb-3">
         <h5>Elective / Language</h5>
