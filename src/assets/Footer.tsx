@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-          <p>&copy; 2024 Acehive</p>
+          <p>&copy; 2025 Acehive</p>
         </div>
       </div>
     </footer>
