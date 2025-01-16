@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaTools } from 'react-icons/fa';
 
 interface FiltersProps {
   year: string | null;
@@ -135,42 +136,54 @@ const Filters: React.FC<FiltersProps> = ({
 
   const handleYearChange = (y: string) => {
     setYear(y);
-    setSpecialisation(null); 
+    setSpecialisation(null);
     setSubject(null);
     setElective(null);
   };
 
   const handleDegreeChange = (d: string) => {
     setDegree(d);
-    setSpecialisation(null); 
+    setSpecialisation(null);
     setSubject(null);
-    setElective(null); 
+    setElective(null);
   };
 
   const handleSearchClick = async () => {
-    setIsLoading(true); 
-    await handleSearch(); 
+    setIsLoading(true);
+    await handleSearch();
     setIsLoading(false);
   };
 
   return (
     <div className="col-md-3">
-      <h3>Filters</h3>
-      <div className="mb-3">
-        <h5>Year</h5>
-        <div className="list-group">
-          {['1st Year', '2nd Year', '3rd Year'].map((y) => (
-            <button
-              key={y}
-              type="button"
-              className={`list-group-item list-group-item-action ${year === y ? 'bg-dark text-white' : ''}`}
-              onClick={() => handleYearChange(y)}
-            >
-              {y}
-            </button>
-          ))}
-        </div>
+    <h3>Filters</h3>
+    <div className="mb-3">
+      <h5>Year</h5>
+      <div className="list-group">
+        {['1st Year', '2nd Year', '3rd Year'].map((y) => (
+          <button
+            key={y}
+            type="button"
+            className={`list-group-item list-group-item-action d-flex align-items-center ${
+              year === y ? 'bg-dark text-white' : ''
+            } ${y !== '1st Year' ? 'disabled' : ''}`}
+            onClick={() => y === '1st Year' && handleYearChange(y)}
+            disabled={y !== '1st Year'}
+          >
+            {y}
+            {y !== '1st Year' && (
+              <span
+                className="ms-auto text-muted d-flex align-items-center"
+                title="Under work"
+              >
+                <FaTools className="ms-2" />
+                <small className="ms-1">(Work in Progress)</small>
+              </span>
+            )}
+          </button>
+        ))}
       </div>
+    </div>
       <div className="mb-3">
         <h5>Degree</h5>
         <div className="list-group">
