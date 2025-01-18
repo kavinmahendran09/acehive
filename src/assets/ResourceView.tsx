@@ -10,7 +10,7 @@ const ResourceView: React.FC = () => {
   const resource = location.state as any;
   const searchState = location.state?.searchState;
 
-  const [similarResources, setSimilarResources] = useState<any[]>([]);
+  const [exactTagResources, setExactTagResources] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleBack = () => {
@@ -19,48 +19,22 @@ const ResourceView: React.FC = () => {
 
   const fetchSimilarResources = async () => {
     const allTags = resource.tags || [];
-    const tagCombinations = getTagCombinations(allTags);
 
     setIsLoading(true);
 
     try {
-      const results = await fetchResources({ tags: tagCombinations }, resource.resourceType);
-
-      const sortedResults = results.sort((a: any, b: any) => {
-        const aMatches = countMatchingTags(a.tags, allTags);
-        const bMatches = countMatchingTags(b.tags, allTags);
-        return bMatches - aMatches;
+      const results = await fetchResources({ tags: allTags }, resource.resourceType);
+      const exactTagResults = results.filter((res: any) => {
+        const matchingTagsCount = countMatchingTags(res.tags, allTags);
+        return matchingTagsCount === allTags.length && res.id !== resource.id; 
       });
 
-      setSimilarResources(sortedResults);
+      setExactTagResources(exactTagResults);
     } catch (error) {
       console.error('Error fetching similar resources:', error);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const getTagCombinations = (tags: string[]) => {
-    const combinations: string[][] = [];
-    for (let i = tags.length; i > 0; i--) {
-      combinations.push(...combineTags(tags, i));
-    }
-    return combinations;
-  };
-
-  const combineTags = (tags: string[], length: number): string[][] => {
-    const combinations: string[][] = [];
-    const combine = (start: number, comb: string[]) => {
-      if (comb.length === length) {
-        combinations.push(comb);
-        return;
-      }
-      for (let i = start; i < tags.length; i++) {
-        combine(i + 1, [...comb, tags[i]]);
-      }
-    };
-    combine(0, []);
-    return combinations;
   };
 
   const countMatchingTags = (resourceTags: string[], searchTags: string[]): number => {
@@ -191,46 +165,53 @@ const ResourceView: React.FC = () => {
       </div>
 
       <div className="container my-4">
-        <h1>Similar Resources</h1>
-        {isLoading ? (
-          <div className="d-flex justify-content-center">
-            <div className="spinner-border text-dark" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        ) : (
-          <div className="row">
-          {similarResources.slice(0, 12).map((resource: any, index: number) => (
-            <div className="col-md-4 mb-4" key={index}>
-              <div className="card h-100 d-flex flex-column" style={{ borderColor: "gray" }}>
-                <Thumbnail resource={resource} />
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{resource.title}</h5>
-                  <p className="card-text">{resource.description.slice(0, 70)}...</p>
-                  <div className="tags mt-2">
-                    {resource.tags && resource.tags.length > 0 && resource.tags.map((tag: string, tagIndex: number) => (
-                      <span
-                        key={tagIndex}
-                        className={`badge mx-1 bg-${tagIndex % 4 === 0 ? 'primary' : tagIndex % 4 === 1 ? 'secondary' : tagIndex % 4 === 2 ? 'success' : 'dark'}`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-auto">
-                    <button
-                      onClick={() => navigate('/resource-view', { state: { ...resource, resourceType: resource.resourceType, searchState } })}
-                      className="btn btn-dark mt-2 w-100"
-                    >
-                      View Resource
-                    </button>
-                  </div>
-                </div>
+        <div className="text-start">
+          <h1>Similar Resources</h1>
+          {isLoading ? (
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border text-dark" role="status">
+                <span className="visually-hidden">Loading...</span>
               </div>
             </div>
-          ))}
+          ) : (
+            <>
+
+              <div>
+                <div className="row">
+                  {exactTagResources.slice(0, 12).map((resource: any, index: number) => (
+                    <div className="col-md-4 mb-4" key={index}>
+                      <div className="card h-100 d-flex flex-column" style={{ borderColor: "gray" }}>
+                        <Thumbnail resource={resource} />
+                        <div className="card-body d-flex flex-column">
+                          <h5 className="card-title">{resource.title}</h5>
+                          <p className="card-text">{resource.description.slice(0, 70)}...</p>
+                          <div className="tags mt-2">
+                            {resource.tags && resource.tags.length > 0 && resource.tags.map((tag: string, tagIndex: number) => (
+                              <span
+                                key={tagIndex}
+                                className={`badge mx-1 bg-${tagIndex % 4 === 0 ? 'primary' : tagIndex % 4 === 1 ? 'secondary' : tagIndex % 4 === 2 ? 'success' : 'dark'}`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="mt-auto">
+                            <button
+                              onClick={() => navigate('/resource-view', { state: { ...resource, resourceType: resource.resourceType, searchState } })}
+                              className="btn btn-dark mt-2 w-100"
+                            >
+                              View Resource
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </div>
-        )}
       </div>
 
       <Footer />
