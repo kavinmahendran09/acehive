@@ -13,7 +13,7 @@ AceHive is an innovative project designed to simplify how students access and ma
 ## **Features**
 
 - **Effortless Resource Discovery**: Find exactly what you need with our powerful filter system, allowing you to search by tags, subjects, and other customizable parameters.  
-- **100+ Resources and Growing**: With a library of over 200 resources and more being added regularly, AceHive ensures you have access to a wide range of materials.  
+- **200+ Resources and Growing**: With a library of over 200 resources and more being added regularly, AceHive ensures you have access to a wide range of materials.  
 - **Student-Centric Design**: AceHive is tailored to meet the needs of students, making it easy to locate study materials, question papers, and more in just a few clicks.  
 - **Streamlined UI/UX**: Navigate through the platform seamlessly with an intuitive and visually appealing interface.
 

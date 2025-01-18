@@ -49,7 +49,7 @@ const About: React.FC = () => {
                     <a href="https://www.linkedin.com/in/tharun-haribabu/" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
                       <FaLinkedin size={30} />
                     </a>
-                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
+                    <a href="https://github.com/Tharun-1604" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
                       <FaGithub size={30} />
                     </a>
                   </div>
@@ -65,37 +65,40 @@ const About: React.FC = () => {
         <div className="container" style={{ maxWidth: '700px' }}>
           <h3 className="text-center mb-4">Resource Management Team</h3>
           <div className="d-flex justify-content-center flex-wrap">
-            <a href="https://www.linkedin.com/in/member1" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+            <a href="https://www.linkedin.com/in/amogha-vemuri-b9534a267/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Amogha
             </a>
-            <a href="https://www.linkedin.com/in/member2" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
-              Dhiya
+            <a href="https://www.linkedin.com/in/dhiya-chandrasekar-824099259" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+              C Dhiya
             </a>
-            <a href="https://www.linkedin.com/in/member2" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+            <a href="https://www.linkedin.com/in/gladdin-shruthi-j-6129bb2bb/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+              Gladdin Shruthi J
+            </a>
+            <a href="https://www.linkedin.com/in/imran-afsar-basha-b44409299/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Imran Afsar Basha
             </a>
-            <a href="https://www.linkedin.com/in/member3" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+            <a href="https://www.linkedin.com/in/karan-pillai-010094285?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Karan Pillai
             </a>
-            <a href="https://www.linkedin.com/in/member4" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
-              Lakshya
+            <a href="https://www.linkedin.com/in/lakshayakrishnaraj/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+              Lakshya Krishnaraj
             </a>
-            <a href="https://www.linkedin.com/in/member4" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
-              Neeraj varior
+            <a href="https://www.linkedin.com/in/neeraj-variar-ab685530a/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+              Neeraj Varior
             </a>
-            <a href="https://www.linkedin.com/in/member4" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
-              Nayantra
+            <a href="https://www.linkedin.com/in/nayantra-ramakrishnan-b5b8ba284/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+              Nayantra Ramakrishnan
             </a>
-            <a href="https://www.linkedin.com/in/member4" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+            <a href="https://www.linkedin.com/in/shree-srishti-mahesh-b5293b1aa/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Shree Srishti Mahesh
             </a>
-            <a href="https://www.linkedin.com/in/member4" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
-              Sasmita
+            <a href="https://www.linkedin.com/in/sasmita-p-578b13289" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+              Sasmita Pangulur
             </a>
-            <a href="https://www.linkedin.com/in/member4" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+            <a href="https://www.linkedin.com/in/vivish-adhik-b75917285/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Vivish Adhik
             </a>
-          </div>
+          </div> 
         </div>
       </section>
 
