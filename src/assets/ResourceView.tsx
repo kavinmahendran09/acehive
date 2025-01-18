@@ -23,13 +23,22 @@ const ResourceView: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const results = await fetchResources({ tags: allTags }, resource.resourceType);
-      const exactTagResults = results.filter((res: any) => {
-        const matchingTagsCount = countMatchingTags(res.tags, allTags);
-        return matchingTagsCount === allTags.length && res.id !== resource.id; 
-      });
+      const cacheKey = `similarResources-${resource.id}`;
+      const cachedData = localStorage.getItem(cacheKey);
 
-      setExactTagResources(exactTagResults);
+      if (cachedData) {
+        setExactTagResources(JSON.parse(cachedData));
+      } else {
+        const results = await fetchResources({ tags: allTags }, resource.resourceType);
+        const exactTagResults = results.filter((res: any) => {
+          const matchingTagsCount = countMatchingTags(res.tags, allTags);
+          return matchingTagsCount === allTags.length && res.id !== resource.id;
+        });
+
+        setExactTagResources(exactTagResults);
+
+        localStorage.setItem(cacheKey, JSON.stringify(exactTagResults));
+      }
     } catch (error) {
       console.error('Error fetching similar resources:', error);
     } finally {
