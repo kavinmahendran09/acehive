@@ -31,6 +31,7 @@ const Filters: React.FC<FiltersProps> = ({
   warning,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubjectSelected, setIsSubjectSelected] = useState(true); 
 
   const specialisationOptions =
     degree === "Computer Science"
@@ -118,14 +119,14 @@ const Filters: React.FC<FiltersProps> = ({
       ? ["Computer Networks", "Discrete Mathematics", "Machine Learning", "Formal Language and Automata"]
       : [];
 
-  // const languageOptions = ["Spanish", "German", "Japanese", "French", "Chinese", "Korean"];
-
-  const electiveOptions =
-    year === "1st Year"
-      ? []
-      : specialisation === "Artificial Intelligence and Machine Learning"
-      ? ["Disaster Mitigation and Management", "Gen AI", "Cloud Computing"]
-      : [];
+  const electiveOptions = [
+    "French",
+    "Spanish",
+    "German",
+    "Japanese",
+    "Korean",
+    "Chinese",
+  ];
 
   const handleYearChange = (y: string) => {
     setYear(y);
@@ -207,30 +208,47 @@ const Filters: React.FC<FiltersProps> = ({
           ))}
         </select>
       </div>
+
       <div className="mb-3">
-        <h5>Subject</h5>
-        <select
-          className="form-select"
-          value={subject || ""}
-          onChange={(e) => {
-            setSubject(e.target.value);
-            setElective(null);
-          }}
-          disabled={!year || !degree || !specialisation}
-        >
-          <option value="" disabled>
-            Select Subject
-          </option>
-          {subjectOptions.map((subj) => (
-            <option key={subj} value={subj}>
-              {subj}
-            </option>
-          ))}
-        </select>
+        <div className="d-flex">
+          <button
+            className={`btn btn-outline-dark me-2 ${isSubjectSelected ? "active" : ""}`}
+            onClick={() => setIsSubjectSelected(true)}
+          >
+            Subject
+          </button>
+          <button
+            className={`btn btn-outline-dark ${!isSubjectSelected ? "active" : ""}`}
+            onClick={() => setIsSubjectSelected(false)}
+          >
+            Language / Elective
+          </button>
+        </div>
       </div>
-      {year !== null && year !== "1st Year" && (
+
+
+      {isSubjectSelected && (
         <div className="mb-3">
-          <h5>Elective / Language</h5>
+          <select
+            className="form-select"
+            value={subject || ""}
+            onChange={(e) => {
+              setSubject(e.target.value);
+              setElective(null);
+            }}
+            disabled={!year || !degree || !specialisation}
+          >
+            {subjectOptions.map((subj) => (
+              <option key={subj} value={subj}>
+                {subj}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {!isSubjectSelected && (
+        <div className="mb-3">
           <select
             className="form-select"
             value={elective || ""}
@@ -240,9 +258,6 @@ const Filters: React.FC<FiltersProps> = ({
             }}
             disabled={!year || !degree || !specialisation}
           >
-            <option value="" disabled>
-              Select Elective / Language
-            </option>
             {electiveOptions.map((elec) => (
               <option key={elec} value={elec}>
                 {elec}
@@ -251,11 +266,13 @@ const Filters: React.FC<FiltersProps> = ({
           </select>
         </div>
       )}
+
       {year !== null && year !== "1st Year" && (
         <small className="text-danger">
           You can select either a Subject or an Elective, but not both.
         </small>
       )}
+
       <button
         className="btn btn-dark w-100 mt-3"
         onClick={handleSearchClick}
@@ -267,6 +284,7 @@ const Filters: React.FC<FiltersProps> = ({
           "Search"
         )}
       </button>
+
       {warning && (
         <div className="alert alert-danger mt-2" role="alert">
           {warning}
