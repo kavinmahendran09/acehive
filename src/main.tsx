@@ -6,16 +6,20 @@ import './index.css';
 import App from './App.tsx';
 import { PostHogProvider } from 'posthog-js/react';
 
+const apiKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY;
+const apiHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com';
+
+if (!apiKey) {
+  throw new Error('Missing PostHog API Key! Please set VITE_PUBLIC_POSTHOG_KEY in your .env file.');
+}
+
 const options = {
-  api_host: process.env.REACT_APP_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com', // Default PostHog API host
+  api_host: apiHost,
 };
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PostHogProvider 
-      apiKey={process.env.REACT_APP_PUBLIC_POSTHOG_KEY || 'YOUR_API_KEY'} 
-      options={options}
-    >
+    <PostHogProvider apiKey={apiKey} options={options}>
       <App />
     </PostHogProvider>
   </StrictMode>,
