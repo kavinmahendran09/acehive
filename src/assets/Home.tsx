@@ -142,71 +142,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-
-
-
-
-
-      {/* Features Section */}
-      <section className="container px-4 py-5">
-      <h2 className="pb-2 border-bottom">Explore the Features of Acehive</h2>
-
-      <div className="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
-        <div className="col d-flex flex-column align-items-start gap-2">
-        <h2 className="fw-bold text-body-emphasis">Streamline Your Study Preparation with <span style={{ background: "linear-gradient(to right,rgb(16, 208, 233),rgb(22, 49, 207))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block" }}>Acehive</span></h2>
-          <p className="text-body-secondary">
-            Discover the powerful features of Acehive that help students efficiently access and organize university resources, including Cycle Test papers, Semester papers, and study materials.
-          </p>
-          <Link to="/ct-home" className="btn btn-dark">Get Started</Link>
-        </div>
-
-        <div className="col">
-          <div className="row row-cols-1 row-cols-sm-2 g-4">
-            <div className="col d-flex flex-column gap-2">
-              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
-                <FaClipboard size={24} />
-              </div>
-              <h4 className="fw-semibold mb-0 text-body-emphasis">Organized Resource Library</h4>
-              <p className="text-body-secondary">
-                Access a well-organized library of resources sorted by subject, year, and resource type, helping you quickly find the materials you need.
-              </p>
-            </div>
-
-            <div className="col d-flex flex-column gap-2">
-              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
-                <FaFolderOpen size={24} />
-              </div>
-              <h4 className="fw-semibold mb-0 text-body-emphasis">Smart Filtering</h4>
-              <p className="text-body-secondary">
-                Quickly filter through resources based on your requirements, such as subject, type of paper, and year, making your study preparation more efficient.
-              </p>
-            </div>
-
-            <div className="col d-flex flex-column gap-2">
-              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
-                <FaBook size={24} />
-              </div>
-              <h4 className="fw-semibold mb-0 text-body-emphasis">Fast Access</h4>
-              <p className="text-body-secondary">
-                With fast access to thousands of resources, Acehive minimizes wait time and lets you focus on what matters: studying and preparing for exams.
-              </p>
-            </div>
-
-            <div className="col d-flex flex-column gap-2">
-              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
-                <FaTable size={24} />
-              </div>
-              <h4 className="fw-semibold mb-0 text-body-emphasis">Detailed Insights</h4>
-              <p className="text-body-secondary">
-                Get detailed insights into resource usage and performance, helping you track your progress and plan your study sessions more effectively.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
     {/* Resources Cards Section */}
     <div className="container my-5 px-3 px-md-5" style={{ padding: '30px'}} id="resource-section">
       <h2 className="text-center mb-5" style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold', fontSize: '2.5rem', color: '#333' }}>
@@ -274,6 +209,65 @@ const Home: React.FC = () => {
         </div>
       </div>
     </div>
+
+    {/* Features Section */}
+    <section className="container px-4 py-5">
+      <h2 className="pb-2 border-bottom">Explore the Features of Acehive</h2>
+
+      <div className="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+        <div className="col d-flex flex-column align-items-start gap-2">
+        <h2 className="fw-bold text-body-emphasis">Streamline Your Study Preparation with <span style={{ background: "linear-gradient(to right,rgb(16, 208, 233),rgb(22, 49, 207))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", display: "inline-block" }}>Acehive</span></h2>
+          <p className="text-body-secondary">
+            Discover the powerful features of Acehive that help students efficiently access and organize university resources, including Cycle Test papers, Semester papers, and study materials.
+          </p>
+          <Link to="/ct-home" className="btn btn-dark">Get Started</Link>
+        </div>
+
+        <div className="col">
+          <div className="row row-cols-1 row-cols-sm-2 g-4">
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaClipboard size={24} />
+              </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Organized Resource Library</h4>
+              <p className="text-body-secondary">
+                Access a well-organized library of resources sorted by subject, year, and resource type, helping you quickly find the materials you need.
+              </p>
+            </div>
+
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaFolderOpen size={24} />
+              </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Smart Filtering</h4>
+              <p className="text-body-secondary">
+                Quickly filter through resources based on your requirements, such as subject, type of paper, and year, making your study preparation more efficient.
+              </p>
+            </div>
+
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaBook size={24} />
+              </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Fast Access</h4>
+              <p className="text-body-secondary">
+                With fast access to thousands of resources, Acehive minimizes wait time and lets you focus on what matters: studying and preparing for exams.
+              </p>
+            </div>
+
+            <div className="col d-flex flex-column gap-2">
+              <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-dark bg-gradient fs-4 rounded-3" style={{ width: '50px', height: '50px' }}>
+                <FaTable size={24} />
+              </div>
+              <h4 className="fw-semibold mb-0 text-body-emphasis">Detailed Insights</h4>
+              <p className="text-body-secondary">
+                Get detailed insights into resource usage and performance, helping you track your progress and plan your study sessions more effectively.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
     {/* Feedback Form Section */}
