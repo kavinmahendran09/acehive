@@ -31,7 +31,7 @@ const Filters: React.FC<FiltersProps> = ({
   warning,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSubjectSelected, setIsSubjectSelected] = useState(true); 
+  const [isSubjectSelected, setIsSubjectSelected] = useState(true);
 
   const specialisationOptions =
     degree === "Computer Science"
@@ -148,9 +148,20 @@ const Filters: React.FC<FiltersProps> = ({
     setIsLoading(false);
   };
 
+  // Determine if the search button should be enabled
+  const isSearchEnabled = () => {
+    if (year === "1st Year") {
+      // For 1st Year, only subject or elective is required
+      return subject || elective;
+    } else {
+      // For 2nd Year and 3rd Year, specialisation is also required
+      return (subject || elective) && specialisation;
+    }
+  };
+
   return (
     <div className="col-md-3">
-      <h3>Filters</h3>
+      <h3>Search Options</h3>
       <div className="mb-3">
         <h5>Year</h5>
         <div className="list-group">
@@ -190,27 +201,30 @@ const Filters: React.FC<FiltersProps> = ({
           ))}
         </div>
       </div>
-      <div className="mb-3">
-        <h5>Specialisation</h5>
-        <select
-          className="form-select"
-          value={specialisation || ""}
-          onChange={(e) => setSpecialisation(e.target.value)}
-          disabled={!year || !degree}
-        >
-          <option value="" disabled>
-            Select Specialisation
-          </option>
-          {specialisationOptions.map((spec) => (
-            <option key={spec} value={spec}>
-              {spec}
+
+      {(year === "2nd Year" || year === "3rd Year") && (
+        <div className="mb-3">
+          <h5>Specialisation</h5>
+          <select
+            className="form-select"
+            value={specialisation || ""}
+            onChange={(e) => setSpecialisation(e.target.value)}
+            disabled={!year || !degree}
+          >
+            <option value="" disabled>
+              Select Specialisation
             </option>
-          ))}
-        </select>
-      </div>
+            {specialisationOptions.map((spec) => (
+              <option key={spec} value={spec}>
+                {spec}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div className="mb-3">
-      <h5>Subject</h5>
+        <h5>Subject</h5>
         <div className="d-flex">
           <button
             className={`btn btn-outline-dark me-2 ${isSubjectSelected ? "active" : ""}`}
@@ -227,28 +241,26 @@ const Filters: React.FC<FiltersProps> = ({
         </div>
       </div>
 
-
       {isSubjectSelected && (
-      <div className="mb-3">
-        <select
-          className="form-select"
-          value={subject || ""}
-          onChange={(e) => {
-            setSubject(e.target.value);
-            setElective(null);
-          }}
-          disabled={!year || !degree || !specialisation}
-        >
-          <option value="" disabled>Select Subject</option> 
-          {subjectOptions.map((subj) => (
-            <option key={subj} value={subj}>
-              {subj}
-            </option>
-          ))}
-        </select>
-      </div>
-    )}
-
+        <div className="mb-3">
+          <select
+            className="form-select"
+            value={subject || ""}
+            onChange={(e) => {
+              setSubject(e.target.value);
+              setElective(null);
+            }}
+            disabled={!year || !degree || (!specialisation && (year === "2nd Year" || year === "3rd Year"))}
+          >
+            <option value="" disabled>Select Subject</option> 
+            {subjectOptions.map((subj) => (
+              <option key={subj} value={subj}>
+                {subj}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       {!isSubjectSelected && (
         <div className="mb-3">
@@ -259,7 +271,7 @@ const Filters: React.FC<FiltersProps> = ({
               setElective(e.target.value);
               setSubject(null);
             }}
-            disabled={!year || !degree || !specialisation}
+            disabled={!year || !degree || (!specialisation && (year === "2nd Year" || year === "3rd Year"))}
           >
             <option value="" disabled>Select Language/Elective</option> 
             {electiveOptions.map((elec) => (
@@ -280,7 +292,7 @@ const Filters: React.FC<FiltersProps> = ({
       <button
         className="btn btn-dark w-100 mt-3"
         onClick={handleSearchClick}
-        disabled={!subject && !elective || isLoading}
+        disabled={!isSearchEnabled() || isLoading}
       >
         {isLoading ? (
           <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

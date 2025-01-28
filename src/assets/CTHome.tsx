@@ -38,23 +38,46 @@ const CTHome: React.FC = () => {
   }, [location.state]);
 
   const handleSearch = async () => {
-    if (year && degree && specialisation && (subject || elective) && !(subject && elective)) {
+    // For 1st Year, specialisation is not required
+    if (year === '1st Year') {
+      if ((subject || elective) && !(subject && elective)) {
+        setWarning(null);
+        setIsLoading(true);
+
+        try {
+          const results = await fetchResources({ year: '1st Year', subject, elective }, resourceType);
+          results.sort((a: any, b: any) => a.title.localeCompare(b.title));
+
+          setSearchResults(results);
+
+          if (results.length === 0) {
+            setWarning('No resources found matching your criteria.');
+          }
+
+          const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType };
+          navigate('/ct-home', { state: newSearchState });
+        } catch (error) {
+          console.error('Search failed:', error);
+          setWarning('Unable to fetch resources. Please try again later.');
+          setSearchResults([]);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setWarning('Please select a subject or elective before searching.');
+      }
+    }
+    // For 2nd Year and 3rd Year, specialisation is required
+    else if (year && degree && specialisation && (subject || elective) && !(subject && elective)) {
       setWarning(null);
       setIsLoading(true);
 
       try {
-        let results;
-
-        if (year === '1st Year') {
-          results = await fetchResources({ year: '1st Year', subject, elective }, resourceType);
-        } else {
-          results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
-        }
-
-        results = results.sort((a: any, b: any) => a.title.localeCompare(b.title));
+        const results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
+        results.sort((a: any, b: any) => a.title.localeCompare(b.title));
 
         setSearchResults(results);
-        
+
         if (results.length === 0) {
           setWarning('No resources found matching your criteria.');
         }
