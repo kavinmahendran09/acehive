@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer'; 
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { IoEarth } from 'react-icons/io5';
 
 const About: React.FC = () => {
   return (
@@ -29,8 +28,8 @@ const About: React.FC = () => {
                   <p className="card-text">Project Developer</p>
                   {/* Social Links */}
                   <div className="d-flex align-items-center justify-content-center">
-                    <a href="https://kavindev.vercel.app" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
-                      <IoEarth size={30} />
+                  <a href="https://www.linkedin.com/in/kavin-bharathi-081577252/" target="_blank" rel="noopener noreferrer" className="text-primary mx-2">
+                      <FaLinkedin size={30} />
                     </a>
                     <a href="https://github.com/kavinmahendran09" target="_blank" rel="noopener noreferrer" className="text-dark mx-2">
                       <FaGithub size={30} />
