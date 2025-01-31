@@ -100,47 +100,89 @@ const Home: React.FC = () => {
       
 
       {/* Filter Banner Section */}
-      <section className="container my-5 px-3 px-md-5" style={{ padding: '30px' }}>
-        <div className="d-flex flex-column flex-lg-row align-items-center">
-          {/* Text Content */}
+      <section className="container my-5 px-4 px-md-5 text-center">
+        <div 
+          className="content-wrapper"
+          style={{
+            maxWidth: '800px',
+            margin: '0 auto',
+          }}
+        >
+          <h1 className="fw-bold display-5 mb-3">Effortless Resource Discovery</h1>
+          <p className="text-muted lead mb-5">
+            Find exactly what you need with tailored filters and intuitive navigation.
+          </p>
+
           <div 
-            className="text-content d-flex flex-column justify-content-between"
-            style={{ flex: 1 }}
+            className="steps-wrapper d-flex flex-column flex-md-row justify-content-around gap-4"
+            style={{ gap: '30px' }}
           >
-            <h1 className="display-5 fw-bold mb-3" style={{ marginTop: 'auto' }}>
-              Find Resources Instantly
-            </h1>
-            <p className="lead">
-              Simplify your academic journey with quick access to curated resources. 
-            </p>
-            <ul className="list-unstyled mt-4">
-              <li className="mb-3">
-                <i className="text-dark me-2" style={{ fontSize: '1.2rem' }}>✔</i>
-                Filter by year, subject, and specialization.
-              </li>
-              <li className="mb-3">
-                <i className="text-dark me-2" style={{ fontSize: '1.2rem' }}>✔</i>
-                Quickly locate study materials and papers.
-              </li>
-              <li className="mb-2">
-                <i className="text-dark me-2" style={{ fontSize: '1.2rem' }}>✔</i>
-                Save time with precise search results.
-              </li>
-            </ul>
-          </div>
-          {/* Image Content */}
-          <div 
-            className="image-content ms-lg-4 mt-4 mt-lg-0"
-            style={{ maxWidth: '300px', flexShrink: 0 }}
-          >
-            <img 
-              src="https://jzgisslizhrhnovplcuz.supabase.co/storage/v1/object/public/Web%20Sources/Images/dark_selection_filter.png" 
-              alt="Filter System" 
-              className="img-fluid w-100" 
-            />
+            <div className="step">
+              <div 
+                className="step-circle mx-auto mb-3"
+                style={{
+                  width: '70px',
+                  height: '70px',
+                  borderRadius: '50%',
+                  backgroundColor: '#f0f4f8',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <i className="text-primary" style={{ fontSize: '4.75rem' }}>🔍</i>
+              </div>
+              <h6 className="fw-semibold mb-2">Apply Filters</h6>
+              <p className="text-muted small">
+                Select the year, subject, or specialization that fits your needs.
+              </p>
+            </div>
+
+            <div className="step">
+              <div 
+                className="step-circle mx-auto mb-3"
+                style={{
+                  width: '70px',
+                  height: '70px',
+                  borderRadius: '50%',
+                  backgroundColor: '#f0f4f8',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <i className="text-primary" style={{ fontSize: '4.75rem' }}>📄</i>
+              </div>
+              <h6 className="fw-semibold mb-2">Browse Results</h6>
+              <p className="text-muted small">
+                Explore a list of curated resources tailored to your preferences.
+              </p>
+            </div>
+
+            <div className="step">
+              <div 
+                className="step-circle mx-auto mb-3"
+                style={{
+                  width: '70px',
+                  height: '70px',
+                  borderRadius: '50%',
+                  backgroundColor: '#f0f4f8',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <i className="text-primary" style={{ fontSize: '4.75rem' }}>📥</i>
+              </div>
+              <h6 className="fw-semibold mb-2">Download Instantly</h6>
+              <p className="text-muted small">
+                Access the resources you need quickly and efficiently.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
 
     {/* Resources Cards Section */}
     <div className="container my-5 px-3 px-md-5" style={{ padding: '30px'}} id="resource-section">
