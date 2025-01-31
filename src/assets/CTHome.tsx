@@ -38,7 +38,6 @@ const CTHome: React.FC = () => {
   }, [location.state]);
 
   const handleSearch = async () => {
-    // For 1st Year, specialisation is not required
     if (year === '1st Year') {
       if ((subject || elective) && !(subject && elective)) {
         setWarning(null);
@@ -51,7 +50,7 @@ const CTHome: React.FC = () => {
           setSearchResults(results);
 
           if (results.length === 0) {
-            setWarning('No resources found matching your criteria.');
+            setWarning('Oops! we might have missed out on this one. Dont worry, we will update it soon.');
           }
 
           const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType };
