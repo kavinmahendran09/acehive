@@ -67,6 +67,9 @@ const About: React.FC = () => {
             <a href="https://www.linkedin.com/in/amogha-vemuri-b9534a267/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Amogha
             </a>
+            <a href="https://www.linkedin.com/in/ashmit-sharma-9a69b1325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+              Ashmit Sharma
+            </a>
             <a href="https://www.linkedin.com/in/dhiya-chandrasekar-824099259" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               C Dhiya
             </a>
@@ -90,6 +93,9 @@ const About: React.FC = () => {
             </a>
             <a href="https://www.linkedin.com/in/shree-srishti-mahesh-b5293b1aa/" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Shree Srishti Mahesh
+            </a>
+            <a href="https://www.linkedin.com/in/srinija-gottumukkala" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
+            Srinija Gottumukkala
             </a>
             <a href="https://www.linkedin.com/in/sasmita-p-578b13289" target="_blank" rel="noopener noreferrer" className="mx-3 mb-3 text-center col-12 col-md-auto">
               Sasmita Pangulur
