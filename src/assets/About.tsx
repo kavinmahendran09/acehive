@@ -119,7 +119,7 @@ const About: React.FC = () => {
             </div>
             <div className="col-md-4 mb-4">
               <h5>Students Reached</h5>
-              <div className="display-4 text-success">300+</div>
+              <div className="display-4 text-success">1000+</div>
               <p>Supporting SRM students with essential resources</p>
             </div>
             <div className="col-md-4 mb-4">
