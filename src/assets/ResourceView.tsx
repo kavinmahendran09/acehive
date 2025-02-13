@@ -125,7 +125,10 @@ const ResourceView: React.FC = () => {
             overflowY: 'auto',
           }}
         >
-          <p><strong>Introduction:</strong> {resource.description}</p>
+          <h4>
+            Introduction: <span style={{ fontWeight: "normal", fontSize : "22px" }}>{resource.description}</span>
+          </h4>
+
           <ul>
             {resource.bullet_points?.map((point: string, index: number) => (
               <li key={index} style={{ fontWeight: 'bold' }}>{point}</li>
