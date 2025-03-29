@@ -11,6 +11,7 @@ import { pdfjs } from 'react-pdf'; // Import pdfjs from react-pdf
 import { Analytics } from '@vercel/analytics/react'; // Import Analytics
 import PrivacyPolicy from './assets/PrivacyPolicy';
 import NotFound from './assets/NotFound'; // Import NotFound page
+import RankingMatrix from './assets/RankingMatrix';
 
 // Set the worker source for PDF rendering
 pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
@@ -45,6 +46,7 @@ function App() {
         <Route path="/resource-view" element={<ResourceView />} />
         <Route path="/about" element={<About />} />
         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> {/* Updated path to lowercase */}
+        <Route path="/ranking-matrix" element={<RankingMatrix />} />
 
         {/* Admin Routes */}
         <Route path="/admin-login" element={<AdminLogin onLogin={handleLogin} />} />

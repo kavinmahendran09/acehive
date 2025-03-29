@@ -66,7 +66,6 @@ const CTHome: React.FC = () => {
         setWarning('Please select a subject or elective before searching.');
       }
     }
-    // For 2nd Year and 3rd Year, specialisation is required
     else if (year && degree && specialisation && (subject || elective) && !(subject && elective)) {
       setWarning(null);
       setIsLoading(true);
@@ -99,6 +98,10 @@ const CTHome: React.FC = () => {
     navigate('/resource-view', { state: { ...resource, resourceType, searchState: { year, degree, specialisation, subject, elective, results: searchResults, resourceType } } });
   };
 
+  const handleNavigateToCalculator = () => {
+    navigate('/ranking-matrix');
+  };
+
   const Thumbnail: React.FC<{ resource: any }> = ({ resource }) => {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
@@ -118,7 +121,7 @@ const CTHome: React.FC = () => {
 
     if (isPdf) {
       return (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '150px', backgroundColor: '#f4f4f4' , borderRadius : "5px"}}>
+        <div className="d-flex justify-content-center align-items-center" style={{ height: '150px', backgroundColor: '#f4f4f4', borderRadius: "5px" }}>
           <div className="d-flex flex-column align-items-center">
             <i className="bi bi-file-earmark-pdf" style={{ fontSize: '3rem', color: '#e74c3c' }}></i>
             <span className="mt-2" style={{ fontSize: '1.2rem' }}>{numberInTitle}</span>
@@ -175,9 +178,29 @@ const CTHome: React.FC = () => {
                 </div>
               </div>
             ) : searchResults.length === 0 ? (
-              <div className="alert alert-primary mt-4" role="alert">
-                <i className="bi bi-info-circle-fill"></i> Get started by searching
-              </div>
+              <>
+                <div className="alert alert-primary mt-4" role="alert">
+                  <i className="bi bi-info-circle-fill me-2"></i> Get started by searching
+                </div>
+                <div className="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                  <div className="d-flex">
+                    <div className="flex-shrink-0">
+                      <i className="bi bi-graph-up fs-3"></i>
+                    </div>
+                    <div className="flex-grow-1 ms-3">
+                      <h4 className="alert-heading">Placement Matrix Calculator is Live!</h4>
+                      <p>Calculate your placement score and discover ways to improve your chances with our new tool.</p>
+                      <hr />
+                      <button 
+                        onClick={handleNavigateToCalculator}
+                        className="btn btn-dark"
+                      >
+                        Try Calculator Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
             ) : (
               <div className="row mt-4">
                 {searchResults.map((resource, index) => (
@@ -201,7 +224,10 @@ const CTHome: React.FC = () => {
                           ))}
                         </div>
 
-                        <button onClick={() => handleViewPaper(resource)} className="btn btn-dark mt-2 w-100">
+                        <button 
+                          onClick={() => handleViewPaper(resource)} 
+                          className="btn btn-dark mt-2 w-100"
+                        >
                           View Resource
                         </button>
                       </div>

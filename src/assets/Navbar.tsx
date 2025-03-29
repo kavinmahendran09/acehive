@@ -1,41 +1,40 @@
-import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Check if the current location is in the "Resources" section
-  const isHomeActive = location.pathname === '/';
-  const isAboutActive = location.pathname === '/about';
 
-  // The "Resources" section includes ct-home, sem-papers, and study-materials
+  const isHomeActive = location.pathname === "/";
+  const isAboutActive = location.pathname === "/about";
+  const isRankingActive = location.pathname === "/ranking-matrix";
+
+
   const isResourcesActive =
-    location.pathname === '/ct-home' ||
-    location.pathname === '/resource-view' ||
-    location.pathname === '/sem-papers' ||
-    location.pathname === '/study-materials';
+    location.pathname === "/ct-home" ||
+    location.pathname === "/resource-view" ||
+    location.pathname === "/sem-papers" ||
+    location.pathname === "/study-materials";
 
-  // Function to handle navigation with resourceType state
+
   const handleNavigate = (resourceType: string) => {
-    // Map resourceType to the format used in the database
     let mappedResourceType;
     switch (resourceType) {
-      case 'CT Papers':
-        mappedResourceType = 'CT Paper';
+      case "CT Papers":
+        mappedResourceType = "CT Paper";
         break;
-      case 'Sem Papers':
-        mappedResourceType = 'Sem Paper';
+      case "Sem Papers":
+        mappedResourceType = "Sem Paper";
         break;
-      case 'Study Materials':
-        mappedResourceType = 'Study Material';
+      case "Study Materials":
+        mappedResourceType = "Study Material";
         break;
       default:
-        mappedResourceType = 'CT Paper'; // Default fallback
+        mappedResourceType = "CT Paper";
     }
 
-    // Navigate to the appropriate page and pass the resourceType state
-    navigate('/ct-home', { state: { resourceType: mappedResourceType } });
+    navigate("/ct-home", { state: { resourceType: mappedResourceType } });
   };
 
   return (
@@ -60,29 +59,33 @@ const Navbar: React.FC = () => {
             {/* Home Link */}
             <li className="nav-item">
               <Link
-                className={`nav-link ${isHomeActive ? 'active' : ''}`}
+                className={`nav-link ${isHomeActive ? "active" : ""}`}
                 aria-current="page"
                 to="/"
               >
                 Home
               </Link>
             </li>
+
             {/* About Link */}
             <li className="nav-item">
               <Link
-                className={`nav-link ${isAboutActive ? 'active' : ''}`}
+                className={`nav-link ${isAboutActive ? "active" : ""}`}
                 to="/about"
               >
                 About
               </Link>
             </li>
+
             {/* Resources Dropdown */}
             <li className="nav-item dropdown">
               <button
-                className={`nav-link dropdown-toggle ${isResourcesActive ? 'active' : ''}`}
+                className={`nav-link dropdown-toggle ${
+                  isResourcesActive ? "active" : ""
+                }`}
                 type="button"
                 data-bs-toggle="dropdown"
-                aria-expanded={isResourcesActive ? 'true' : 'false'}
+                aria-expanded={isResourcesActive ? "true" : "false"}
               >
                 Resources
               </button>
@@ -90,7 +93,7 @@ const Navbar: React.FC = () => {
                 <li>
                   <button
                     className="dropdown-item"
-                    onClick={() => handleNavigate('CT Papers')}
+                    onClick={() => handleNavigate("CT Papers")}
                   >
                     CT Papers
                   </button>
@@ -98,7 +101,7 @@ const Navbar: React.FC = () => {
                 <li>
                   <button
                     className="dropdown-item"
-                    onClick={() => handleNavigate('Sem Papers')}
+                    onClick={() => handleNavigate("Sem Papers")}
                   >
                     Sem Papers
                   </button>
@@ -106,12 +109,24 @@ const Navbar: React.FC = () => {
                 <li>
                   <button
                     className="dropdown-item"
-                    onClick={() => handleNavigate('Study Materials')}
+                    onClick={() => handleNavigate("Study Materials")}
                   >
                     Study Materials
                   </button>
                 </li>
               </ul>
+            </li>
+
+            <li className="nav-item">
+              <Link
+                className={`nav-link d-flex align-items-center ${
+                  isRankingActive ? "active" : ""
+                }`}
+                to="/ranking-matrix"
+              >
+                Ranking Matrix
+                <span className="badge bg-danger ms-2">New</span>
+              </Link>
             </li>
           </ul>
         </div>
