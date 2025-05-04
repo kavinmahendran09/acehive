@@ -1,149 +1,162 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Navbar from './Navbar';
-import Footer from './Footer'; 
-import Filters from './Filters';
-import { fetchResources } from './supabaseClient';
+"use client"
+
+import type React from "react"
+import { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
+import Navbar from "./Navbar"
+import Footer from "./Footer"
+import Filters from "./Filters"
+import { fetchResources } from "./supabaseClient"
 
 const CTHome: React.FC = () => {
-  const [year, setYear] = useState<string | null>(null);
-  const [degree, setDegree] = useState<string | null>(null);
-  const [specialisation, setSpecialisation] = useState<string | null>(null);
-  const [subject, setSubject] = useState<string | null>(null);
-  const [elective, setElective] = useState<string | null>(null);
-  const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [warning, setWarning] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [resourceType, setResourceType] = useState<string>('CT Paper'); 
+  const [year, setYear] = useState<string | null>(null)
+  const [degree, setDegree] = useState<string | null>(null)
+  const [specialisation, setSpecialisation] = useState<string | null>(null)
+  const [subject, setSubject] = useState<string | null>(null)
+  const [elective, setElective] = useState<string | null>(null)
+  const [searchResults, setSearchResults] = useState<any[]>([])
+  const [warning, setWarning] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [resourceType, setResourceType] = useState<string>("CT Paper")
 
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (location.state?.resourceType) {
-      setResourceType(location.state.resourceType);
+      setResourceType(location.state.resourceType)
     }
-  }, [location.state]);
+  }, [location.state])
 
   useEffect(() => {
     if (location.state) {
-      const { year, degree, specialisation, subject, elective, results } = location.state;
-      setYear(year || null);
-      setDegree(degree || null);
-      setSpecialisation(specialisation || null);
-      setSubject(subject || null);
-      setElective(elective || null);
-      setSearchResults(results || []);
+      const { year, degree, specialisation, subject, elective, results } = location.state
+      setYear(year || null)
+      setDegree(degree || null)
+      setSpecialisation(specialisation || null)
+      setSubject(subject || null)
+      setElective(elective || null)
+      setSearchResults(results || [])
     }
-  }, [location.state]);
+  }, [location.state])
 
   const handleSearch = async () => {
-    if (year === '1st Year') {
+    if (year === "1st Year") {
       if ((subject || elective) && !(subject && elective)) {
-        setWarning(null);
-        setIsLoading(true);
+        setWarning(null)
+        setIsLoading(true)
 
         try {
-          const results = await fetchResources({ year: '1st Year', subject, elective }, resourceType);
-          results.sort((a: any, b: any) => a.title.localeCompare(b.title));
+          const results = await fetchResources({ year: "1st Year", subject, elective }, resourceType)
+          results.sort((a: any, b: any) => a.title.localeCompare(b.title))
 
-          setSearchResults(results);
+          setSearchResults(results)
 
           if (results.length === 0) {
-            setWarning('Oops! we might have missed out on this one. Dont worry, we will update it soon.');
+            setWarning("Oops! we might have missed out on this one. Dont worry, we will update it soon.")
           }
 
-          const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType };
-          navigate('/ct-home', { state: newSearchState });
+          const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType }
+          navigate("/ct-home", { state: newSearchState })
         } catch (error) {
-          console.error('Search failed:', error);
-          setWarning('Unable to fetch resources. Please try again later.');
-          setSearchResults([]);
+          console.error("Search failed:", error)
+          setWarning("Unable to fetch resources. Please try again later.")
+          setSearchResults([])
         } finally {
-          setIsLoading(false);
+          setIsLoading(false)
         }
       } else {
-        setWarning('Please select a subject or elective before searching.');
+        setWarning("Please select a subject or elective before searching.")
       }
-    }
-    else if (year && degree && specialisation && (subject || elective) && !(subject && elective)) {
-      setWarning(null);
-      setIsLoading(true);
+    } else if (year && degree && specialisation && (subject || elective) && !(subject && elective)) {
+      setWarning(null)
+      setIsLoading(true)
 
       try {
-        const results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType);
-        results.sort((a: any, b: any) => a.title.localeCompare(b.title));
+        const results = await fetchResources({ year, degree, specialisation, subject, elective }, resourceType)
+        results.sort((a: any, b: any) => a.title.localeCompare(b.title))
 
-        setSearchResults(results);
+        setSearchResults(results)
 
         if (results.length === 0) {
-          setWarning('No resources found matching your criteria.');
+          setWarning("No resources found matching your criteria.")
         }
 
-        const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType };
-        navigate('/ct-home', { state: newSearchState });
+        const newSearchState = { year, degree, specialisation, subject, elective, results, resourceType }
+        navigate("/ct-home", { state: newSearchState })
       } catch (error) {
-        console.error('Search failed:', error);
-        setWarning('Unable to fetch resources. Please try again later.');
-        setSearchResults([]);
+        console.error("Search failed:", error)
+        setWarning("Unable to fetch resources. Please try again later.")
+        setSearchResults([])
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
     } else {
-      setWarning('Please select all required filters before searching.');
+      setWarning("Please select all required filters before searching.")
     }
-  };
+  }
 
   const handleViewPaper = (resource: any) => {
-    navigate('/resource-view', { state: { ...resource, resourceType, searchState: { year, degree, specialisation, subject, elective, results: searchResults, resourceType } } });
-  };
+    navigate("/resource-view", {
+      state: {
+        ...resource,
+        resourceType,
+        searchState: { year, degree, specialisation, subject, elective, results: searchResults, resourceType },
+      },
+    })
+  }
 
-  const handleNavigateToCalculator = () => {
-    navigate('/ranking-matrix');
-  };
+  const handleNavigateToSemPapers = () => {
+    navigate("/ct-home", { state: { resourceType: "Sem Paper" } })
+  }
 
   const Thumbnail: React.FC<{ resource: any }> = ({ resource }) => {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
 
     if (isSafari) {
       return (
         <img
-          src={resource.file_urls[0]}
+          src={resource.file_urls[0] || "/placeholder.svg"}
           className="card-img-top"
           alt={resource.title}
-          style={{ height: '150px', objectFit: 'cover' }}
+          style={{ height: "150px", objectFit: "cover" }}
         />
-      );
+      )
     }
 
-    const isPdf = resource.file_urls[0]?.toLowerCase().endsWith('.pdf');
-    const numberInTitle = resource.title.match(/\d+/)?.[0] || '';
+    const isPdf = resource.file_urls[0]?.toLowerCase().endsWith(".pdf")
+    const numberInTitle = resource.title.match(/\d+/)?.[0] || ""
 
     if (isPdf) {
       return (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '150px', backgroundColor: '#f4f4f4', borderRadius: "5px" }}>
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "150px", backgroundColor: "#f4f4f4", borderRadius: "5px" }}
+        >
           <div className="d-flex flex-column align-items-center">
-            <i className="bi bi-file-earmark-pdf" style={{ fontSize: '3rem', color: '#e74c3c' }}></i>
-            <span className="mt-2" style={{ fontSize: '1.2rem' }}>{numberInTitle}</span>
+            <i className="bi bi-file-earmark-pdf" style={{ fontSize: "3rem", color: "#e74c3c" }}></i>
+            <span className="mt-2" style={{ fontSize: "1.2rem" }}>
+              {numberInTitle}
+            </span>
           </div>
         </div>
-      );
+      )
     }
 
     return (
       <img
-        src={resource.file_urls[0]}
+        src={resource.file_urls[0] || "/placeholder.svg"}
         className="card-img-top"
         alt={resource.title}
-        style={{ height: '150px', objectFit: 'cover' }}
+        style={{ height: "150px", objectFit: "cover" }}
       />
-    );
-  };
+    )
+  }
 
   return (
     <div>
       <Navbar />
-      
+
       <div className="bg-dark text-white text-center py-3 mb-4 py-5">
         <h1 className="m-0">{resourceType}</h1>
         <p className="m-0">Explore curated {resourceType} resources for your needs</p>
@@ -168,7 +181,7 @@ const CTHome: React.FC = () => {
 
           <div className="col-md-9">
             <h2 className="text-start">{resourceType}</h2>
-            <p className="text-secondary" style={{ fontSize: '0.9em' }}>
+            <p className="text-secondary" style={{ fontSize: "0.9em" }}>
               Showing {searchResults.length} result(s)
             </p>
             {isLoading ? (
@@ -182,20 +195,19 @@ const CTHome: React.FC = () => {
                 <div className="alert alert-primary mt-4" role="alert">
                   <i className="bi bi-info-circle-fill me-2"></i> Get started by searching
                 </div>
-                <div className="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <div className="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                   <div className="d-flex">
                     <div className="flex-shrink-0">
-                      <i className="bi bi-graph-up fs-3"></i>
+                      <i className="bi bi-journal-text fs-3"></i>
                     </div>
                     <div className="flex-grow-1 ms-3">
-                      <h4 className="alert-heading">Placement Matrix Calculator is Live!</h4>
-                      <p>Calculate your placement score and discover ways to improve your chances with our new tool.</p>
+                      <h4 className="alert-heading">Semester Exams Are Coming Soon!</h4>
+                      <p>
+                        Check previous year semester papers for better preparation and improve your chances of success.
+                      </p>
                       <hr />
-                      <button 
-                        onClick={handleNavigateToCalculator}
-                        className="btn btn-dark"
-                      >
-                        Try Calculator Now
+                      <button onClick={handleNavigateToSemPapers} className="btn btn-dark">
+                        Check Sem Papers
                       </button>
                     </div>
                   </div>
@@ -214,20 +226,19 @@ const CTHome: React.FC = () => {
                         </p>
 
                         <div className="tags mt-2">
-                          {resource.tags && resource.tags.length > 0 && resource.tags.map((tag: string, tagIndex: number) => (
-                            <span 
-                              key={tagIndex} 
-                              className={`badge mx-1 bg-${tagIndex % 4 === 0 ? 'primary' : tagIndex % 4 === 1 ? 'secondary' : tagIndex % 4 === 2 ? 'success' : 'dark'}`}
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                          {resource.tags &&
+                            resource.tags.length > 0 &&
+                            resource.tags.map((tag: string, tagIndex: number) => (
+                              <span
+                                key={tagIndex}
+                                className={`badge mx-1 bg-${tagIndex % 4 === 0 ? "primary" : tagIndex % 4 === 1 ? "secondary" : tagIndex % 4 === 2 ? "success" : "dark"}`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
                         </div>
 
-                        <button 
-                          onClick={() => handleViewPaper(resource)} 
-                          className="btn btn-dark mt-2 w-100"
-                        >
+                        <button onClick={() => handleViewPaper(resource)} className="btn btn-dark mt-2 w-100">
                           View Resource
                         </button>
                       </div>
@@ -242,7 +253,7 @@ const CTHome: React.FC = () => {
 
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default CTHome;
+export default CTHome
